@@ -67,7 +67,7 @@ class RecipesTable extends Table
             ->notEmpty('ingredients');
 
         $validator
-            ->allowEmpty('directions');
+            ->allowEmpty('instructions');
 
         $validator
             ->allowEmpty('image');

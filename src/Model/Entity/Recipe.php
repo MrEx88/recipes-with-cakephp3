@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property string $ingredients
- * @property string $directions
+ * @property string $instructions
  * @property string $image
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
