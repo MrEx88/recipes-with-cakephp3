@@ -1,14 +1,14 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Recipe'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Recipe Tags'), ['controller' => 'RecipeTags', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Recipe Tag'), ['controller' => 'RecipeTags', 'action' => 'add']) ?></li>
     </ul>
-</nav>
+</nav> -->
  
 
-<div class="recipes index large-9 medium-8 columns content">
+<div class="recipes index large-12 medium-12 columns content">
     <h3><?= __('Recipes') ?></h3>
     
    <table border="1">
@@ -16,7 +16,12 @@
             <tr>
                 <td>
                 <table border="1">
-                    <tr><td><?= h($recipe->name) ?></td></tr>
+                    <tr>
+                        <td><?= h($recipe->name) ?> 
+                            <a href="edit/<?= $recipe->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <a href="delete/<?= $recipe->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
                     <tr><td><?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id]]) ?><!--<img src="<?= h($recipe->image)?>" /> --> </td></tr>
                     <tr><td>Tags: <?= $this->Query->getTags($recipe->id) ?></td></tr>
                 </table>

@@ -13,7 +13,8 @@ $this->layout = false;
 	<?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') ?>
     <!-- TODO: Make own css -->
-    <?= $this->Html->css('salient.css') ?>
+    <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('cake.css') ?>
 	
 	<?= $this->Html->script("http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js") ?>
 	<?= $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js') ?>
