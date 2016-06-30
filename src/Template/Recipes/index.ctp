@@ -17,7 +17,7 @@
                 <td>
                 <table border="1">
                     <tr><td><?= h($recipe->name) ?></td></tr>
-                    <tr><td><img src="<?= h($recipe->image)?>" /> </td></tr>
+                    <tr><td><?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id]]) ?><!--<img src="<?= h($recipe->image)?>" /> --> </td></tr>
                     <tr><td>Tags: <?= $this->Query->getTags($recipe->id) ?></td></tr>
                 </table>
                 </td>
