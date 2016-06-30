@@ -87,4 +87,19 @@ class RecipesTable extends Table
         $rules->add($rules->isUnique(['name']));
         return $rules;
     }
+    
+    
+    /**
+     * Returns a query object of tags associated with the recipe.
+     *
+     * @param \Cake\ORM\Query $query The query object to be modified.
+     * @param array $options The key/value array passed through.
+     * @return \Cake\ORM\Query
+     
+    public function findTags(Query $query, array $options)
+    {
+        return $this->find()
+            ->select(['name'])->from('tags')->distinct()
+            ->where(['recipe_tags.id' => $options['recipes']]);
+    }*/
 }

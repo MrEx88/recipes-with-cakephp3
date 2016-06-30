@@ -27,8 +27,12 @@
                 <?= $this->Form->input('recipe', ['data-bind' =>'value:Recipe.RecipeName']) ?>
                 <?= $this->Form->input('ingredients', ['data-bind' =>'value:Recipe.Ingredients', 'row' => '100', 'cols' => '25']) ?>
                 <?= $this->Form->input('instructions', ['data-bind' =>'value:Recipe.Instructions', 'row' => '10', 'cols' => '45']) ?>
-                <?= $this->Form->input('image', ['data-bind' =>'value:Recipe.Image', 'row' => '5', 'cols' => '25']) ?>
+                <?= $this->Form->input('image', ['data-bind' =>'value:Recipe.Image']) ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
+<br />
+<br />
+<h2><i>Preview</i></h2>
+<hr />

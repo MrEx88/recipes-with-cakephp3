@@ -6,8 +6,25 @@
         <li><?= $this->Html->link(__('New Recipe Tag'), ['controller' => 'RecipeTags', 'action' => 'add']) ?></li>
     </ul>
 </nav>
+ 
+
 <div class="recipes index large-9 medium-8 columns content">
     <h3><?= __('Recipes') ?></h3>
+    
+   <table border="1">
+       <?php foreach ($recipes as $recipe): ?>
+            <tr>
+                <td>
+                <table border="1">
+                    <tr><td><?= h($recipe->name) ?></td></tr>
+                    <tr><td><img src="<?= h($recipe->image)?>" /> </td></tr>
+                    <tr><td>Tags: <?= $this->Query->getTags($recipe->id) ?></td></tr>
+                </table>
+                </td>
+            </tr>
+       <?php endforeach; ?>
+    </table>
+
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
