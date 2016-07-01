@@ -10,8 +10,7 @@
 
 <div class="recipes index large-12 medium-12 columns content">
     <h3><?= __('Recipes') ?></h3>
-    
-   <table border="1">
+    <table border="1">
        <?php foreach ($recipes as $recipe): ?>
             <tr>
                 <td>
@@ -22,7 +21,7 @@
                             <a href="delete/<?= $recipe->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                         </td>
                     </tr>
-                    <tr><td><?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id]]) ?><!--<img src="<?= h($recipe->image)?>" /> --> </td></tr>
+                    <tr><td><?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id], 'height' => '250', 'width' => '250']) ?><!--<img src="<?= h($recipe->image)?>" /> --> </td></tr>
                     <tr><td>Tags: <?= $this->Query->getTags($recipe->id) ?></td></tr>
                 </table>
                 </td>

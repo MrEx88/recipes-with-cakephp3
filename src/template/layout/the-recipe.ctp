@@ -11,18 +11,24 @@ $this->layout = false;
 	</title>
 
 	<?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') ?>
-    <!-- TODO: Make own css -->
+    
+    <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css') ?>
+    <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
-	
-	<?= $this->Html->script("http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js") ?>
+
+    <?= $this->fetch('meta') ?>
+    <?= $this->fetch('css') ?>
+    <?= $this->fetch('script') ?>
+    
+    <?= $this->Html->script("http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js") ?>
 	<?= $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js') ?>
-	<?= $this->Html->script('//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') ?>
+	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js') ?>
 </head>
 <body>
 	 <?= $this->Flash->render() ?>
     <div class="container clearfix">
+        <?= $this->element('header') ?>
         <?= $this->fetch('content') ?>
 	
 		<h1><span data-bind="text:Recipe.RecipeName"></span></h1>

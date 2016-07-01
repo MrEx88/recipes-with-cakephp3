@@ -34,8 +34,8 @@
         <?= $this->Text->autoParagraph(h($recipe->ingredients)); ?>
     </div>
     <div class="row">
-        <h4><?= __('Directions') ?></h4>
-        <?= $this->Text->autoParagraph(h($recipe->directions)); ?>
+        <h4><?= __('Instructions') ?></h4>
+        <?= $this->Text->autoParagraph(h($recipe->instructions)); ?>
     </div>
     <div class="row">
         <h4><?= __('Image') ?></h4>

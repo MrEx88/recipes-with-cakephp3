@@ -41,19 +41,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
     <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-1">My Recipes</h1>
-            <nav class="navbar navbar-dark bg-inverse">
-                <div class="nav navbar-nav">
-                    <?= $this->Html->link('Add Recipe', ['controller' => 'Recipes', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?>
-                    <?= $this->Html->link('Add Tag', ['controller' => 'Tags', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?>   
-                    <form class="form-inline pull-xs-right">
-                        <input class="form-control" type="text" placeholder="Search">
-                        <button class="btn btn-primary-outline" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                </div>
-            </nav>
-        </div>
+        <?= $this->element('header') ?>
         <?= $this->Flash->render() ?>
         <div class="container">
             <?= $this->fetch('content') ?>
@@ -64,7 +52,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                    <!-- <?=$this->Html->image('logo-footer.png', array('class'=>'img-responsive logo-footer'));?> -->
                 </div>
                 <div class="col-xs-12 col-sm-8 copyright">
-                    &copy;&nbsp;<?=date('Y')?> My Recipes, Powered by CakePHP 3
+                    &copy;&nbsp;<?=date('Y')?> My Recipes, Powered by CakePHP <?= $this->Misc->getCakeVersion() ?>
                 </div>
             </div>
         </footer>
