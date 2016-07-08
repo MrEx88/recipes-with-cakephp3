@@ -12,7 +12,7 @@
     <h3><?= __('Recipes') ?></h3>
     <table border="1">
        <?php foreach ($recipes as $recipe): ?>
-            <tr>
+            <tr class="col-md-3">
                 <td>
                 <table border="1">
                     <tr>
@@ -21,7 +21,11 @@
                             <a href="delete/<?= $recipe->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                         </td>
                     </tr>
-                    <tr><td><?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id], 'height' => '250', 'width' => '250']) ?><!--<img src="<?= h($recipe->image)?>" /> --> </td></tr>
+                    <?php if($recipe->image !== ""): ?>
+                        <tr><td><?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id], 'height' => '250', 'width' => '250']) ?></td></tr>
+                    <?php else: ?>
+                        <tr><td><?= $this->Html->link($recipe->name, ['controller' => 'Recipes', 'action' => 'view', $recipe->id]) ?></td></tr>
+                    <?php endif; ?>
                     <tr><td>Tags: <?= $this->Query->getTags($recipe->id) ?></td></tr>
                 </table>
                 </td>

@@ -18,14 +18,34 @@ class QueryHelper extends Helper
      */
     public function getTags($recipeId)
     {
-        /*$recipes = TableRegistry::get('Tags');
-        // TODO: Still need to figure out the correct query
-        $query = $recipes->find()
-            ->select(['name'])->from('Tags')
-            ->where(['recipe_tags.recipe_id' => $recipeId]);
-        $query->hydrate(false);
+        /*SELECT t.name from tags t
+        JOIN recipe_tags rt ON (t.id = rt.tag_id) 
+        JOIN recipes r ON (rt.recipe_id = r.id)
+        WHERE r.id = 2;*/
         
-        return $query->toList();*/
-        return Text::tail(Text::toList(['chicken', 'dinner']), 50, ['ellipsis' => '...', 'exact' => false]);
+        $recipes = TableRegistry::get('Tags');
+        $query = $recipes->find()
+            ->select(['tags.name'])->from('tags')
+            ->join([
+                'rt' => [
+                    'table' => 'recipe_tags',
+                    'conditions' => 'tags.id = rt.tag_id'
+                ],
+                'r' => [
+                    'table' => 'recipes',
+                    'conditions' => 'rt.recipe_id = r.id'
+                ]
+            ])
+            ->where(['r.id' => $recipeId])
+            ->toArray();
+        
+        $results;
+        foreach($query as $q)
+        {
+            $results[] = $q['tags']['name'];
+        }
+        // TODO: ?? Find out a way to make each tag a link so each tag you click on will
+        //          show all recipes for that tag.
+        return Text::tail(Text::toList($results), 50, ['ellipsis' => '...', 'exact' => false]);
     }
 }
