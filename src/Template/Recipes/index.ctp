@@ -1,37 +1,33 @@
-<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Recipe'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Recipe Tags'), ['controller' => 'RecipeTags', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Recipe Tag'), ['controller' => 'RecipeTags', 'action' => 'add']) ?></li>
-    </ul>
-</nav> -->
- 
-
 <div class="recipes index large-12 medium-12 columns content">
     <h3><?= __('Recipes') ?></h3>
-    <table border="1">
-       <?php foreach ($recipes as $recipe): ?>
-            <tr class="col-md-3">
-                <td>
-                <table border="1">
-                    <tr>
-                        <td><?= h($recipe->name) ?> 
-                            <a href="edit/<?= $recipe->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            <a href="delete/<?= $recipe->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
-                    <?php if($recipe->image !== ""): ?>
-                        <tr><td><?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id], 'height' => '250', 'width' => '250']) ?></td></tr>
-                    <?php else: ?>
-                        <tr><td><?= $this->Html->link($recipe->name, ['controller' => 'Recipes', 'action' => 'view', $recipe->id]) ?></td></tr>
-                    <?php endif; ?>
-                    <tr><td>Tags: <?= $this->Query->getTags($recipe->id) ?></td></tr>
-                </table>
-                </td>
-            </tr>
-       <?php endforeach; ?>
-    </table>
+    
+    <!--<div class="row"> --->
+        <?php foreach ($recipes as $recipe): ?>
+        <div class="col-lg-4 jumbotron">
+            <div class="row">
+                <div class="col-md-9"><?= h($recipe->name) ?> </div>
+                <div class="col-md-3"> 
+                    <a href="edit/<?= $recipe->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="delete/<?= $recipe->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a> 
+                </div>
+            </div>
+            <div class="row">
+            <?php if($recipe->image !== ""): ?>
+                <div class="col-md-12">
+                    <?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id], 'height' => '250', 'width' => '250']) ?>
+                </div>
+            <?php else: ?>
+                <div class="col-md-12">
+                    <?= $this->Html->link($recipe->name, ['controller' => 'Recipes', 'action' => 'view', $recipe->id]) ?>
+                </div>
+            <?php endif; ?>
+            </div>
+            <div class="row">
+                <div class="col-md-12">Tags:  <?= $this->Query->getTags($recipe->id) ?> </div>  
+            </div>
+        </div>
+        <?php endforeach; ?>
+   <!-- </div> --> <!-- end row -->
 
     <table cellpadding="0" cellspacing="0">
         <thead>
