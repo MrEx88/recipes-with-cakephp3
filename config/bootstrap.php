@@ -192,6 +192,23 @@ Request::addDetector('tablet', function ($request) {
 
 Plugin::load('Migrations');
 
+Plugin::load('CakePdf', ['bootstrap' => true]);
+
+Configure::write('CakePdf', [
+    'engine' => [
+        'className' => 'CakePdf.WkHtmlToPdf',
+        'binary' => APP . 'wkhtmltopdf/bin/wkhtmltopdf.exe'
+    ],
+    'margin' => [
+        'top' => 45,
+        'left' => 15,
+        'bottom' => 30,
+        'right' => 14
+    ],
+    'download' => false,
+    'orientation' => 'portrait'
+]);
+
 // Only try to load DebugKit in development mode
 // Debug Kit should not be installed on a production system
 if (Configure::read('debug')) {
