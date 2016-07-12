@@ -192,20 +192,20 @@ Request::addDetector('tablet', function ($request) {
 
 Plugin::load('Migrations');
 
-Plugin::load('CakePdf', ['bootstrap' => true]);
+Plugin::load('CakePdf', ['bootstrap' => true, 'routes' => true]);
 
 Configure::write('CakePdf', [
     'engine' => [
         'className' => 'CakePdf.WkHtmlToPdf',
-        'binary' => APP . 'wkhtmltopdf/bin/wkhtmltopdf.exe'
+        'binary' => 'C:\wkhtmltopdf\bin\wkhtmltopdf.exe' //APP . 'wkhtmltopdf/bin/wkhtmltopdf.exe'
     ],
     'margin' => [
-        'top' => 45,
+        'top' => 35,
         'left' => 15,
         'bottom' => 30,
         'right' => 14
     ],
-    'download' => false,
+    'download' => 0,
     'orientation' => 'portrait'
 ]);
 

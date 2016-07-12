@@ -37,13 +37,16 @@ class RecipesController extends AppController
         $recipe = $this->Recipes->get($id, [
             'contain' => ['RecipeTags']
         ]);
-        
-        $this->viewBuilder()->options([
+        /*$this->pdfConfig = [
+            'title' => $recipe->name . ' Recipe',
+            'filename' => $recipe->name
+        ];*/
+        /*$this->viewBuilder()->options([
                 'pdfConfig' => [
                     'title' => $recipe->name . ' Recipe',
                     'filename' => $recipe->name
                 ]
-            ]);
+        ]);*/
 
         $this->set('recipe', $recipe);
         $this->set('_serialize', ['recipe']);
