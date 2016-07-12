@@ -39,7 +39,7 @@ class QueryHelper extends Helper
             ->where(['r.id' => $recipeId])
             ->toArray();
         
-        $results;
+        $results =[];
         foreach($query as $q)
         {
             $results[] = $q['tags']['name'];
