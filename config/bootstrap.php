@@ -197,15 +197,15 @@ Plugin::load('CakePdf', ['bootstrap' => true, 'routes' => true]);
 Configure::write('CakePdf', [
     'engine' => [
         'className' => 'CakePdf.WkHtmlToPdf',
-        'binary' => 'C:\wkhtmltopdf\bin\wkhtmltopdf.exe' //APP . 'wkhtmltopdf/bin/wkhtmltopdf.exe'
+        'binary' => 'C:\wkhtmltopdf\bin\wkhtmltopdf.exe'
     ],
     'margin' => [
         'top' => 35,
         'left' => 15,
         'bottom' => 30,
-        'right' => 14
+        'right' => 15
     ],
-    'download' => 0,
+    'download' => false,
     'orientation' => 'portrait'
 ]);
 
