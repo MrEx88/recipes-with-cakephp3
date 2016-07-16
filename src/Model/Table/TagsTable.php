@@ -43,6 +43,12 @@ class TagsTable extends Table
         $this->hasMany('RecipeTags', [
             'foreignKey' => 'tag_id'
         ]);
+        
+        $this->belongsToMany('Recipes', [
+            'foreignKey' => 'tag_id',
+            'targetForeignKey' => 'recipe_id',
+            'joinTable' => 'recipe_tags'
+        ]);
     }
 
     /**
@@ -75,5 +81,26 @@ class TagsTable extends Table
     {
         $rules->add($rules->isUnique(['name']));
         return $rules;
+    }
+    
+    public function findAssociatedList(Query $query, $options = [])
+    {
+        /*SELECT t.id from tags t
+        JOIN recipe_tags rt ON (t.id = rt.tag_id) 
+        JOIN recipes r ON (rt.recipe_id = r.id)
+        WHERE r.id = 2;*/
+        
+        return $query->select(['tags.id'])->from('tags')
+            ->join([
+                'rt' => [
+                    'table' => 'recipe_tags',
+                    'conditions' => 'tags.id = rt.tag_id'
+                ],
+                'r' => [
+                    'table' => 'recipes',
+                    'conditions' => 'rt.recipe_id = r.id'
+                ]
+            ])
+            ->where(['r.id' => $options['id']]);
     }
 }

@@ -32,20 +32,25 @@ class RecipesController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->layout('the-recipe');
-        
         $recipe = $this->Recipes->get($id, [
             'contain' => ['RecipeTags']
         ]);
         
-//        $this->viewBuilder()->options([
+        if($this->request->params['_ext'] === 'pdf')
+        {
+            // This is causing it to freeze for some reason   
+//            $this->viewBuilder()->options([
 //                'pdfConfig' => [
 //                    'title' => $recipe->name . ' Recipe'
 //                ]
-//        ]);
-
-        $this->set('recipe', $recipe);
-        $this->set('_serialize', ['recipe']);
+//            ]);
+        }
+        else
+        {
+            $this->viewBuilder()->layout('the-recipe');
+            $this->set('recipe', $recipe);
+            $this->set('_serialize', ['recipe']);
+        }
     }
 
     /**
@@ -68,7 +73,10 @@ class RecipesController extends AppController
                 $this->Flash->error(__('The recipe could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('recipe'));
+        
+        $tags = $this->loadModel('Tags')->find('list', ['order' => ['name' => 'ASC']]);
+        
+        $this->set(compact('recipe', 'tags'));
         $this->set('_serialize', ['recipe']);
     }
 
@@ -95,7 +103,15 @@ class RecipesController extends AppController
                 $this->Flash->error(__('The recipe could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('recipe'));
+        $tags = $this->loadModel('Tags')->find('list', ['order' => ['name' => 'ASC']]);
+        $selectedTags = $this->Recipes->RecipeTags->Tags->find('associatedList', ['order' => ['Tags.name' => 'ASC'], 'id' => $id]);
+        $selectedTagsArray = $selectedTags->toArray();
+        $selected = [];
+        foreach($selectedTagsArray as $s)
+        {
+            $selected[] = $s['tags']['id'];
+        }
+        $this->set(compact('recipe', 'tags', 'selected'));
         $this->set('_serialize', ['recipe']);
     }
 
@@ -116,5 +132,16 @@ class RecipesController extends AppController
             $this->Flash->error(__('The recipe could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+    
+    public function tags()
+    {
+        $tags = $this->request->params['pass'];
+        
+        $recipes = $this->Recipes->find('tags', [
+            'tags' => $tags
+        ]);
+        $recipes = $this->paginate($recipes);
+        $this->set(['recipes' => $recipes, 'tags' => $tags]);
     }
 }

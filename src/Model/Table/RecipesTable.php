@@ -43,6 +43,12 @@ class RecipesTable extends Table
         $this->hasMany('RecipeTags', [
             'foreignKey' => 'recipe_id'
         ]);
+        
+        $this->belongsToMany('Tags', [
+            'foreignKey' => 'recipe_id',
+            'targetForeignKey' => 'tag_id',
+            'joinTable' => 'recipe_tags'
+        ]);
     }
 
     /**
@@ -95,11 +101,17 @@ class RecipesTable extends Table
      * @param \Cake\ORM\Query $query The query object to be modified.
      * @param array $options The key/value array passed through.
      * @return \Cake\ORM\Query
-     
+     */
     public function findTags(Query $query, array $options)
     {
         return $this->find()
-            ->select(['name'])->from('tags')->distinct()
-            ->where(['recipe_tags.id' => $options['recipes']]);
-    }*/
+            ->distinct(['Recipes.id'])
+            ->matching('Tags', function($q) use ($options) {
+              if(empty($options['tags']))
+              {
+                  return $q->where(['Tags.name IN' => null]);
+              }
+                return $q->where(['Tags.name IN' => $options['tags']]);
+            });
+    }
 }

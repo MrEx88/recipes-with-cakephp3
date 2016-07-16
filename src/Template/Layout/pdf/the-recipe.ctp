@@ -36,10 +36,9 @@ $appName = 'My Recipes';
 <body>
 	 <?= $this->Flash->render() ?>
     <div class="container clearfix">
-        <?= $this->element('header') ?>
         <?= $this->fetch('content') ?>
 	       
-		<h1><span data-bind="text:Recipe.RecipeName"></span></h1>
+		<h1>$recipe->name</h1>
 		<img width="200px" height="200px" data-bind="attr:{src:Recipe.Image}, visible:Recipe.HasImage" />
 		<h4 data-bind="visible:Recipe.HasIngredients">Ingredients</h4>
 		<pre><span data-bind="text:Recipe.Ingredients"></span></pre>
@@ -47,35 +46,4 @@ $appName = 'My Recipes';
 		<p><span data-bind="text:Recipe.Instructions"></span></p>
 	</div>
 </body>
-
-<script>			
-	function Recipe() {
-		var self = this;
-		self.RecipeName = ko.observable(<?= $recipe->name ?>);
-		self.Ingredients = ko.observable(<?= $recipe->ingredients ?>);
-		self.Instructions = ko.observable(<?= $recipe->instructions ?>);
-		self.Image = ko.observable(<?= $recipe->image ?>);
-
-		self.HasIngredients = ko.computed(function() {
-			return self.Ingredients() !== "";
-		});
-
-		self.HasInstructions = ko.computed(function() {
-			return self.Instructions() !== "";
-		});
-
-		self.HasImage = ko.computed(function() {
-			// TODO: Check for a valid url
-			return self.Image() !== "";
-		});
-	}
-	
-	function RecipeViewModel() {
-		var self = this;
-		self.Recipe = new Recipe();
-	}
-	
-	ko.applyBindings(new RecipeViewModel());
-</script>
-
 </html>

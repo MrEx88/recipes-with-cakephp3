@@ -15,7 +15,7 @@
         <h4><?= __('Instructions') ?></h4>
         <?= $this->Text->autoParagraph(h($recipe->instructions)); ?>
     </div>
-    <div class="related">
+    <!-- <div class="related">
         <h4><?= __('Related Recipe Tags') ?></h4>
         <?php if (!empty($recipe->recipe_tags)): ?>
         <table cellpadding="0" cellspacing="0">
@@ -32,5 +32,5 @@
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
-    </div>
+    </div> -->
 </div>
