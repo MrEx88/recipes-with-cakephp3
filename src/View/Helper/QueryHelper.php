@@ -44,8 +44,19 @@ class QueryHelper extends Helper
         {
             $results[] = $q['tags']['name'];
         }
-        // TODO: ?? Find out a way to make each tag a link so each tag you click on will
-        //          show all recipes for that tag.
-        return Text::tail(Text::toList($results), 50, ['ellipsis' => '...', 'exact' => false]);
+        return $results;
+        //return Text::tail(Text::toList($results), 50, ['ellipsis' => '...', 'exact' => false]);
+    }
+    
+    //** This does not give you the proper href for some reason
+    private function toHtmlLinks(array $array)
+    {
+        $htmlLinks = [];
+        foreach($array as $value)
+        {
+            $htmlLinks[] = '<a href="recipes/tags/' . $value . '">' . $value . '</a>'; 
+        }
+        debug($htmlLinks);
+        return $htmlLinks;
     }
 }

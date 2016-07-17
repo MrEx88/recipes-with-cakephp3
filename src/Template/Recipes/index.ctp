@@ -5,10 +5,10 @@
     <?php if($col === 1): // Create a div after the 3rd column?>
         <div class="row" style="border: 2px solid black">
     <?php endif; ?>
-            <div class="col-lg-4 jumbotron">
-                <div class="row">
-                    <div class="col-md-8"></div>
-                    <div class="col-md-4"> 
+            <div class="col-md-3 jumbotron">
+                <div class="row recipe-row">
+<!--                    <div class="col-md-7"></div>-->
+                    <div class="col-lg-6 pull-right"> 
                         <a href="recipes/view/<?= $recipe->id ?>.pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                         <a href="recipes/edit/<?= $recipe->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                         <a href="recipes/delete/<?= $recipe->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a> 
@@ -27,10 +27,13 @@
                 <?php endif; ?>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">Tags:  <?= $this->Query->getTags($recipe->id) ?> </div>  
+                    <div class="col-md-12">Tags:  <?php foreach($this->Query->getTags($recipe->id) as $tag) {
+                                                            echo $this->Html->link($tag, ['action' => 'tags', $tag]);
+                                                            echo '&nbsp;';
+                                                    }?> </div>  
                 </div>
             </div> <!-- end col jumbotron -->
-    <?php if($col === 3): ?>
+    <?php if($col === 4): ?>
         </div> <!-- end row -->
         <?php $col = 1;
           else:

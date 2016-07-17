@@ -47,7 +47,7 @@ class RecipesController extends AppController
         }
         else
         {
-            $this->viewBuilder()->layout('the-recipe');
+            //$this->viewBuilder()->layout('the-recipe');
             $this->set('recipe', $recipe);
             $this->set('_serialize', ['recipe']);
         }

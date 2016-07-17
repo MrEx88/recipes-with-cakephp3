@@ -3,8 +3,9 @@
 namespace App\View\Helper;
 
 use Cake\Core\Configure;
-use Cake\View\Helper;
 use Cake\Utility\Text;
+use Cake\Utility\Inflector;
+use Cake\View\Helper;
 
 class MiscHelper extends Helper
 {
@@ -16,5 +17,21 @@ class MiscHelper extends Helper
     public function getCakeVersion()
     {
         return Configure::version();
+    }
+    
+    /**
+     * Turns an array into a list that has been humanized.
+     *
+     * @param $array Array to be altered.
+     * @return The list that has been humanized.
+     */
+    public function toList(array $array)
+    {
+        $arrayList = [];
+        foreach($array as $value)
+        {
+            $arrayList[] = Inflector::humanize($value);
+        }
+        return Text::toList($arrayList);
     }
 }
