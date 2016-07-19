@@ -191,7 +191,7 @@ Request::addDetector('tablet', function ($request) {
  */
 
 Plugin::load('Migrations');
-
+Plugin::load('Bootstrap');
 Plugin::load('CakePdf', ['bootstrap' => true, 'routes' => true]);
 
 Configure::write('CakePdf', [

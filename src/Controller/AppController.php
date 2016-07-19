@@ -27,7 +27,14 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
-
+    public $helpers = [
+        'Form' => [
+            'className' => 'BootstrapFormEx'
+        ],
+        'Html' => [
+            'className' => 'BootstrapHtmlEx'
+        ]
+    ];
     /**
      * Initialization hook method.
      *
