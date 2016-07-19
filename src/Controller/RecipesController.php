@@ -65,6 +65,7 @@ class RecipesController extends AppController
         $recipe = $this->Recipes->newEntity();
         if ($this->request->is('post')) {
             $recipe = $this->Recipes->patchEntity($recipe, $this->request->data);
+            $recipe->image = $this->getImageNameAndSave($recipe->image);
             if ($this->Recipes->save($recipe)) {
                 $this->Flash->success(__('The recipe has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -143,5 +144,21 @@ class RecipesController extends AppController
         ]);
         $recipes = $this->paginate($recipes);
         $this->set(['recipes' => $recipes, 'tags' => $tags]);
+    }
+    
+    /**
+     * Gets image name by stripping the url portion of it and also downloads the file.
+     * 
+     * @param $image The url image to use.
+     * @return The image with just the file name.
+     */
+    private function getImageNameAndSave($image)
+    {
+        $filePath = WWW_ROOT . 'img' . DS;
+        $name = ereg_replace("(http(s{0,1}):\/\/[a-zA-Z\.\/\?\#\-\_0-9]*\/)", "", $image);
+        
+        file_put_contents($filePath . $name, file_get_contents($image));
+        
+        return $name;
     }
 }

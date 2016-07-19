@@ -5,7 +5,8 @@
         <div class="recipe-actions">
                 <a href="recipes/view/<?= $recipe->id ?>.pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                 <a href="recipes/edit/<?= $recipe->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <a href="recipes/delete/<?= $recipe->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a> 
+                <!-- Need to make a POST request here -->
+                <a href="recipes/delete/<?= $recipe->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
         </div>
         <div class="recipe-name">
             <div class="name"><?= h($recipe->name) ?></div>
