@@ -6,6 +6,7 @@
                 <a href="recipes/view/<?= $recipe->id ?>.pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                 <a href="recipes/edit/<?= $recipe->id ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 <!-- Need to make a POST request here -->
+                <!-- <?= $this->Form->postIconLink(__(''), ['controller' => 'Recipes', 'action' => 'delete'], 'remove', ['confirm' => __('Are you sure yo want to delete # {0}', $recipe->id)]);
                 <a href="recipes/delete/<?= $recipe->id ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
         </div>
         <div class="recipe-name">
