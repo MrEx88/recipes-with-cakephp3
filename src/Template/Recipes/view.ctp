@@ -17,17 +17,17 @@
     </div>
     <!-- <div class="related">
         <h4><?= __('Related Recipe Tags') ?></h4>
-        <?php if (!empty($recipe->recipe_tags)): ?>
+        <?php if (!empty($recipe->recipes_tags)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th><?= __('Recipe Id') ?></th>
                 <th><?= __('Tag Id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($recipe->recipe_tags as $recipeTags): ?>
+            <?php foreach ($recipe->recipes_tags as $recipesTags): ?>
             <tr>
-                <td><?= h($recipeTags->recipe_id) ?></td>
-                <td><?= h($recipeTags->tag_id) ?></td>
+                <td><?= h($recipesTags->recipe_id) ?></td>
+                <td><?= h($recipesTags->tag_id) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>

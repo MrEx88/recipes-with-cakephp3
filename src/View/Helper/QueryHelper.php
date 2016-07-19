@@ -19,7 +19,7 @@ class QueryHelper extends Helper
     public function getTags($recipeId)
     {
         /*SELECT t.name from tags t
-        JOIN recipe_tags rt ON (t.id = rt.tag_id) 
+        JOIN recipes_tags rt ON (t.id = rt.tag_id) 
         JOIN recipes r ON (rt.recipe_id = r.id)
         WHERE r.id = 2;*/
         
@@ -28,7 +28,7 @@ class QueryHelper extends Helper
             ->select(['tags.name'])->from('tags')
             ->join([
                 'rt' => [
-                    'table' => 'recipe_tags',
+                    'table' => 'recipes_tags',
                     'conditions' => 'tags.id = rt.tag_id'
                 ],
                 'r' => [

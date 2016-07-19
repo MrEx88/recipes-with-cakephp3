@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\RecipeTagsTable;
+use App\Model\Table\RecipesTagsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\RecipeTagsTable Test Case
+ * App\Model\Table\RecipesTagsTable Test Case
  */
-class RecipeTagsTableTest extends TestCase
+class RecipesTagsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\RecipeTagsTable
+     * @var \App\Model\Table\RecipesTagsTable
      */
-    public $RecipeTags;
+    public $RecipesTags;
 
     /**
      * Fixtures
@@ -24,7 +24,7 @@ class RecipeTagsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.recipe_tags',
+        'app.recipes_tags',
         'app.recipes',
         'app.tags'
     ];
@@ -37,8 +37,8 @@ class RecipeTagsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('RecipeTags') ? [] : ['className' => 'App\Model\Table\RecipeTagsTable'];
-        $this->RecipeTags = TableRegistry::get('RecipeTags', $config);
+        $config = TableRegistry::exists('RecipesTags') ? [] : ['className' => 'App\Model\Table\RecipesTagsTable'];
+        $this->RecipesTags = TableRegistry::get('RecipesTags', $config);
     }
 
     /**
@@ -48,7 +48,7 @@ class RecipeTagsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->RecipeTags);
+        unset($this->RecipesTags);
 
         parent::tearDown();
     }

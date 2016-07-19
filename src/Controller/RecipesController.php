@@ -33,7 +33,7 @@ class RecipesController extends AppController
     public function view($id = null)
     {
         $recipe = $this->Recipes->get($id, [
-            'contain' => ['RecipeTags']
+            'contain' => ['RecipesTags']
         ]);
         
         if($this->request->params['_ext'] === 'pdf')
@@ -105,7 +105,7 @@ class RecipesController extends AppController
             }
         }
         $tags = $this->loadModel('Tags')->find('list', ['order' => ['name' => 'ASC']]);
-        $selectedTags = $this->Recipes->RecipeTags->Tags->find('associatedList', ['order' => ['Tags.name' => 'ASC'], 'id' => $id]);
+        $selectedTags = $this->Recipes->RecipesTags->Tags->find('associatedList', ['order' => ['Tags.name' => 'ASC'], 'id' => $id]);
         $selectedTagsArray = $selectedTags->toArray();
         $selected = [];
         foreach($selectedTagsArray as $s)

@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Recipe $recipe
  * @property \App\Model\Entity\Tag $tag
  */
-class RecipeTag extends Entity
+class RecipesTag extends Entity
 {
 
     /**

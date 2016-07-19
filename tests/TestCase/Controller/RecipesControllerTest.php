@@ -17,7 +17,7 @@ class RecipesControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.recipes',
-        'app.recipe_tags'
+        'app.recipes_tags'
     ];
 
     /**

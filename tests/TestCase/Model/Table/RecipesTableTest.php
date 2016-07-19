@@ -25,7 +25,7 @@ class RecipesTableTest extends TestCase
      */
     public $fixtures = [
         'app.recipes',
-        'app.recipe_tags',
+        'app.recipes_tags',
         'app.tags'
     ];
 

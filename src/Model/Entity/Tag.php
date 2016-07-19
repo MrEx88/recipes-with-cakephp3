@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
- * @property \App\Model\Entity\RecipeTag[] $recipe_tags
+ * @property \App\Model\Entity\RecipeTag[] $recipes_tags
  */
 class Tag extends Entity
 {

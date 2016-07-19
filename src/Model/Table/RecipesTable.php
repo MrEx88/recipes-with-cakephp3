@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Recipes Model
  *
- * @property \Cake\ORM\Association\HasMany $RecipeTags
+ * @property \Cake\ORM\Association\HasMany $RecipesTags
  *
  * @method \App\Model\Entity\Recipe get($primaryKey, $options = [])
  * @method \App\Model\Entity\Recipe newEntity($data = null, array $options = [])
@@ -40,14 +40,14 @@ class RecipesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('RecipeTags', [
+        $this->hasMany('RecipesTags', [
             'foreignKey' => 'recipe_id'
         ]);
         
         $this->belongsToMany('Tags', [
             'foreignKey' => 'recipe_id',
             'targetForeignKey' => 'tag_id',
-            'joinTable' => 'recipe_tags'
+            'joinTable' => 'recipes_tags'
         ]);
     }
 

@@ -2,8 +2,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Tag'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Recipe Tags'), ['controller' => 'RecipeTags', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Recipe Tag'), ['controller' => 'RecipeTags', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Recipe Tags'), ['controller' => 'RecipesTags', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Recipe Tag'), ['controller' => 'RecipesTags', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="tags index large-9 medium-8 columns content">

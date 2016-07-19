@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * RecipeTags Model
+ * RecipesTags Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Recipes
  * @property \Cake\ORM\Association\BelongsTo $Tags
@@ -20,7 +20,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RecipeTag[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\RecipeTag findOrCreate($search, callable $callback = null)
  */
-class RecipeTagsTable extends Table
+class RecipesTagsTable extends Table
 {
 
     /**
@@ -33,7 +33,7 @@ class RecipeTagsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('recipe_tags');
+        $this->table('recipes_tags');
         $this->displayField('recipe_id');
         $this->primaryKey(['recipe_id', 'tag_id']);
 

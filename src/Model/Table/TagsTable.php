@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Tags Model
  *
- * @property \Cake\ORM\Association\HasMany $RecipeTags
+ * @property \Cake\ORM\Association\HasMany $RecipesTags
  *
  * @method \App\Model\Entity\Tag get($primaryKey, $options = [])
  * @method \App\Model\Entity\Tag newEntity($data = null, array $options = [])
@@ -40,14 +40,14 @@ class TagsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('RecipeTags', [
+        $this->hasMany('RecipesTags', [
             'foreignKey' => 'tag_id'
         ]);
         
         $this->belongsToMany('Recipes', [
             'foreignKey' => 'tag_id',
             'targetForeignKey' => 'recipe_id',
-            'joinTable' => 'recipe_tags'
+            'joinTable' => 'recipes_tags'
         ]);
     }
 
@@ -86,14 +86,14 @@ class TagsTable extends Table
     public function findAssociatedList(Query $query, $options = [])
     {
         /*SELECT t.id from tags t
-        JOIN recipe_tags rt ON (t.id = rt.tag_id) 
+        JOIN recipes_tags rt ON (t.id = rt.tag_id) 
         JOIN recipes r ON (rt.recipe_id = r.id)
         WHERE r.id = 2;*/
         
         return $query->select(['tags.id'])->from('tags')
             ->join([
                 'rt' => [
-                    'table' => 'recipe_tags',
+                    'table' => 'recipes_tags',
                     'conditions' => 'tags.id = rt.tag_id'
                 ],
                 'r' => [
