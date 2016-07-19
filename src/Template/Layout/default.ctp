@@ -26,10 +26,11 @@ $appName = 'My Recipes';
     </title>
     <?= $this->Html->meta('icon') ?>
     
-    <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css') ?>
+    <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('recipesite.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -37,15 +38,15 @@ $appName = 'My Recipes';
     
     <?= $this->Html->script("http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js") ?>
 	<?= $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js') ?>
-	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js') ?>
+	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js') ?>
 </head>
 <body>
     <div class="container">
         <?= $this->element('header') ?>
         <?= $this->Flash->render() ?>
-        <div class="container">
+<!--        <div class="container">-->
             <?= $this->fetch('content') ?>
-        </div>
+<!--        </div>-->
         <footer>
             <div class="row bottom">
                 <div class="col-sm-4 hidden-xs">
