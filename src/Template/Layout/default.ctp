@@ -30,6 +30,7 @@ $appName = 'My Recipes';
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('recipesite.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -43,9 +44,9 @@ $appName = 'My Recipes';
     <div class="container">
         <?= $this->element('header') ?>
         <?= $this->Flash->render() ?>
-        <div class="container">
+<!--        <div class="container">-->
             <?= $this->fetch('content') ?>
-        </div>
+<!--        </div>-->
         <footer>
             <div class="row bottom">
                 <div class="col-sm-4 hidden-xs">
