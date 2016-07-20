@@ -1,24 +1,54 @@
-.container {
-    padding-left: 0px;
-    padding-right: 0px;
-}
 /**
  * HEADER
  */
+.header h1 {
+    color: #4d4d4d;
+}
+
+
+.header-form-post {
+    vertical-align: -30px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+
+.header input {
+    margin-top: 20px;
+}
+
+#header-link {
+    vertical-align: -30px;
+}
+
+li #header-link
+{
+    margin-left: 8px;
+}
 
 /**
  * BODY
+ */
+.container {
+    background-color: #FFF;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/**
+ * Recipes/index
  */
 .recipe-actions {
     border-bottom: 1px solid darkgray;
     text-align: right;
     padding-top: 0px;
     padding-right: 3px;
-    background-color: azure;
 }
+
 .recipe-col {
-    background-color: azure;
     border: 1px solid darkgray;
+    border-radius: 5px;
+    color: #4d4d4d;
     height: 250px;
     max-width: 220px;
     min-width: 215px;
@@ -27,23 +57,22 @@
     margin-bottom: 1px;
     margin-right: 1px;
     padding-left: 0px;
-    padding-right: 0px;    
-
+    padding-right: 0px;
 }
 
 .recipe-image img {
-    background-color: azure;
     border: 1px solid darkgray;
     max-height: 140px;
     max-width: 180px;
+    min-height: 140px;
 }
 
 img.recipe-image {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 5px;
+    margin-left: auto;
     margin-bottom: 5px;
+    margin-right: auto;   
 }
 
 .recipes .index .content {

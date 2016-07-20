@@ -30,7 +30,8 @@ $appName = 'My Recipes';
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
-    <?= $this->Html->css('recipesite.css') ?>
+    <?= $this->Html->css('site.css') ?>
+    <?= $this->Html->css('recipes.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
