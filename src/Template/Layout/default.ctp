@@ -50,9 +50,6 @@ $appName = 'My Recipes';
 <!--        </div>-->
         <footer>
             <div class="row bottom">
-                <div class="col-sm-4 hidden-xs">
-                   <!-- <?=$this->Html->image('logo-footer.png', array('class'=>'img-responsive logo-footer'));?> -->
-                </div>
                 <div class="col-xs-12 col-sm-8 copyright">
                     &copy;&nbsp;<?=date('Y')?> My Recipes, Powered by CakePHP <?= $this->Misc->getCakeVersion() ?>
                 </div>

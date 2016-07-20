@@ -197,7 +197,7 @@ Plugin::load('CakePdf', ['bootstrap' => true, 'routes' => true]);
 Configure::write('CakePdf', [
     'engine' => [
         'className' => 'CakePdf.WkHtmlToPdf',
-        'binary' => 'C:\wkhtmltopdf\bin\wkhtmltopdf.exe'
+        'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
     ],
     'margin' => [
         'top' => 35,
@@ -206,7 +206,6 @@ Configure::write('CakePdf', [
         'right' => 15
     ],
     'download' => false,
-    'orientation' => 'portrait'
 ]);
 
 // Only try to load DebugKit in development mode

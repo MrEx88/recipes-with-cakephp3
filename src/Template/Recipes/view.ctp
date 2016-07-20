@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-6">
         <?php if($recipe->image !== ""): ?>
-            <img src="<?= WWW_ROOT ?>img/<?= $recipe->image ?>" />
+            <?= $this->Html->image($recipe->image) ?>
         <?php endif; ?>
         </div>
     </div>
@@ -15,6 +15,7 @@
         <h4><?= __('Instructions') ?></h4>
         <?= $this->Text->autoParagraph(h($recipe->instructions)); ?>
     </div>
+<!-- TODO: Provide Tag link navigations -->
     <!-- <div class="related">
         <h4><?= __('Related Recipe Tags') ?></h4>
         <?php if (!empty($recipe->recipes_tags)): ?>

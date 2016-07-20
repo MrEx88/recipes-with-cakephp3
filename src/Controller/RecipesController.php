@@ -39,18 +39,20 @@ class RecipesController extends AppController
         if($this->request->params['_ext'] === 'pdf')
         {
             // This is causing it to freeze for some reason   
-//            $this->viewBuilder()->options([
-//                'pdfConfig' => [
-//                    'title' => $recipe->name . ' Recipe'
-//                ]
-//            ]);
+            $this->viewBuilder()->options([
+                'pdfConfig' => [
+                    'title' => $recipe->name . ' Recipe',
+                    'filename' => $recipe->name . ' recipe.pdf'
+                ]
+            ]);
         }
         else
         {
             //$this->viewBuilder()->layout('the-recipe');
-            $this->set('recipe', $recipe);
-            $this->set('_serialize', ['recipe']);
+            
         }
+        $this->set('recipe', $recipe);
+        $this->set('_serialize', ['recipe']);
     }
 
     /**
