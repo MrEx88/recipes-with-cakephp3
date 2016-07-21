@@ -10,6 +10,9 @@ use App\Controller\AppController;
  */
 class RecipesController extends AppController
 {
+    public $paginate = [
+        'order' => ['Recipes.id' => 'DESC']
+    ];
 
     /**
      * Index method
@@ -156,7 +159,7 @@ class RecipesController extends AppController
      */
     private function getImageNameAndSave($image)
     {
-        // TODO: simplify logic
+        // TODO: simplify logic and maybe move method to beforeSave(Commit)() method
         
         $filePath = WWW_ROOT . 'img' . DS;
         $name = "";
