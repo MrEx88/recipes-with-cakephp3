@@ -157,10 +157,36 @@ class RecipesController extends AppController
     private function getImageNameAndSave($image)
     {
         $filePath = WWW_ROOT . 'img' . DS;
-        $name = ereg_replace("(http(s{0,1}):\/\/[a-zA-Z\.\/\?\#\-\_0-9]*\/)", "", $image);
-        
-        file_put_contents($filePath . $name, file_get_contents($image));
-        
+        $name = "";
+        // if image is from google
+        if(preg_match("/(https:\/\/www.google.com\/imgres\?imgurl)/", "https://www.google.com/imgres?imgurl"))
+        {
+            // decode url
+            $decode = urldecode($image);
+            //remove google section
+            $specialCharUrl = preg_replace("(https:\/\/www.google.com\/imgres\?imgurl=)", "", $decode);
+            //remove google imgrefurl section
+            $url = preg_replace("(&imgrefurl=[\w\d:\/\.\&\=\-\?\#]*)", "", $specialCharUrl);
+            $image = $url;
+            
+            // remove url section
+            $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $image);
+            
+            // save file
+            file_put_contents($filePath . $name, file_get_contents($image));
+        }
+        else if(preg_match("/[\w\d\-\_]*(\.jpg|\.png)/", $image))
+        {
+            // it is a image name already
+            $name = $image;
+        }
+        else
+        {   // remove url section
+            $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $image);
+            
+            //save file
+            file_put_contents($filePath . $name, file_get_contents($image));
+        }
         return $name;
     }
 }
