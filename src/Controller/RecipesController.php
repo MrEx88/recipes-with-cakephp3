@@ -156,6 +156,8 @@ class RecipesController extends AppController
      */
     private function getImageNameAndSave($image)
     {
+        // TODO: simplify logic
+        
         $filePath = WWW_ROOT . 'img' . DS;
         $name = "";
         // if image is from google
@@ -171,9 +173,10 @@ class RecipesController extends AppController
             
             // remove url section
             $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $image);
-            
+            // remove special chars
+            $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
             // save file
-            file_put_contents($filePath . $name, file_get_contents($image));
+            file_put_contents($filePath . $fileName, file_get_contents($image));
         }
         else if(preg_match("/[\w\d\-\_]*(\.jpg|\.png)/", $image))
         {
@@ -183,9 +186,10 @@ class RecipesController extends AppController
         else
         {   // remove url section
             $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $image);
-            
-            //save file
-            file_put_contents($filePath . $name, file_get_contents($image));
+            // remove special chars
+            $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
+            // save file
+            file_put_contents($filePath . $fileName, file_get_contents($image));
         }
         return $name;
     }
