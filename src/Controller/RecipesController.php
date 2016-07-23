@@ -36,7 +36,7 @@ class RecipesController extends AppController
     public function view($id = null)
     {
         $recipe = $this->Recipes->get($id, [
-            'contain' => ['RecipesTags']
+            'contain' => ['Tags']
         ]);
         
         if($this->request->params['_ext'] === 'pdf')
@@ -70,7 +70,7 @@ class RecipesController extends AppController
         $recipe = $this->Recipes->newEntity();
         if ($this->request->is('post')) {
             $recipe = $this->Recipes->patchEntity($recipe, $this->request->data);
-            $recipe->image = $this->getImageNameAndSave($recipe->image);
+            $recipe->image = $this->_getImageNameAndSave($recipe->image);
             if ($this->Recipes->save($recipe)) {
                 $this->Flash->success(__('The recipe has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -98,10 +98,11 @@ class RecipesController extends AppController
         $this->viewBuilder()->layout('the-recipe');
         
         $recipe = $this->Recipes->get($id, [
-            'contain' => []
+            'contain' => ['Tags']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $recipe = $this->Recipes->patchEntity($recipe, $this->request->data);
+            $recipe->image = $this->_getImageNameAndSave($recipe->image);
             if ($this->Recipes->save($recipe)) {
                 $this->Flash->success(__('The recipe has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -157,14 +158,14 @@ class RecipesController extends AppController
      * @param $image The url image to use.
      * @return The image with just the file name.
      */
-    private function getImageNameAndSave($image)
+    private function _getImageNameAndSave($image)
     {
         // TODO: simplify logic and maybe move method to beforeSave(Commit)() method
-        
+        //debug($image);
         $filePath = WWW_ROOT . 'img' . DS;
-        $name = "";
+        $fileName = "";
         // if image is from google
-        if(preg_match("/(https:\/\/www.google.com\/imgres\?imgurl)/", "https://www.google.com/imgres?imgurl"))
+        if(preg_match("/(https:\/\/www.google.com\/imgres\?imgurl)/", $image))
         {
             // decode url
             $decode = urldecode($image);
@@ -180,20 +181,35 @@ class RecipesController extends AppController
             $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
             // save file
             file_put_contents($filePath . $fileName, file_get_contents($image));
+            
+            //debug('is google');
+            //exit(0);
+        }
+        else if(preg_match("/(https?:\/\/)/", $image))
+        {   
+            // decode url
+            $decode = urldecode($image);
+            debug($decode);
+            // remove url section
+            $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $decode);
+            debug($name);
+            // remove special chars
+            $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
+            debug($fileName);
+            //exit(0);
+            // save file
+            file_put_contents($filePath . $fileName, file_get_contents($image));
+            //exit(0);
         }
         else if(preg_match("/[\w\d\-\_]*(\.jpg|\.png)/", $image))
         {
             // it is a image name already
-            $name = $image;
+            $fileName = $image;
+            
+            //debug('image already');
+            //exit(0);
         }
-        else
-        {   // remove url section
-            $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $image);
-            // remove special chars
-            $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
-            // save file
-            file_put_contents($filePath . $fileName, file_get_contents($image));
-        }
-        return $name;
+        
+        return $fileName;
     }
 }
