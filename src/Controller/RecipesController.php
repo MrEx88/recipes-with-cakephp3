@@ -79,9 +79,7 @@ class RecipesController extends AppController
                 $this->Flash->error(__('The recipe could not be saved. Please, try again.'));
             }
         }
-        
-        $tags = $this->loadModel('Tags')->find('list', ['order' => ['name' => 'ASC']]);
-        
+        $tags = $this->Recipes->Tags->find('list', ['limit' => 200]);        
         $this->set(compact('recipe', 'tags'));
         $this->set('_serialize', ['recipe']);
     }
@@ -110,15 +108,8 @@ class RecipesController extends AppController
                 $this->Flash->error(__('The recipe could not be saved. Please, try again.'));
             }
         }
-        $tags = $this->loadModel('Tags')->find('list', ['order' => ['name' => 'ASC']]);
-        $selectedTags = $this->Recipes->RecipesTags->Tags->find('associatedList', ['order' => ['Tags.name' => 'ASC'], 'id' => $id]);
-        $selectedTagsArray = $selectedTags->toArray();
-        $selected = [];
-        foreach($selectedTagsArray as $s)
-        {
-            $selected[] = $s['tags']['id'];
-        }
-        $this->set(compact('recipe', 'tags', 'selected'));
+        $tags = $this->Recipes->Tags->find('list', ['limit' => 200]);
+        $this->set(compact('recipe', 'tags'));
         $this->set('_serialize', ['recipe']);
     }
 

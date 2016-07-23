@@ -6,7 +6,7 @@
                 <?= $this->Form->input('ingredients', ['data-bind' =>'value:Recipe.ingredients', 'row' => '100', 'cols' => '25']) ?>
                 <?= $this->Form->input('instructions', ['data-bind' =>'value:Recipe.instructions, valueUdate:[\'onload\', \'afterkeydown\']', 'row' => '10', 'cols' => '45']) ?>
                 <?= $this->Form->input('image', ['data-bind' =>'value:Recipe.image']) ?>
-                <?= $this->Form->select('tags', $tags, ['multiple' => true , 'val' => $selected]) ?>
+                <?= $this->Form->input('tags._ids', ['options' => $tags, 'multiple' => 'checkbox']) ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

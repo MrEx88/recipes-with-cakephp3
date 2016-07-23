@@ -6,7 +6,7 @@
                 <?= $this->Form->input('ingredients', ['data-bind' =>'value:Recipe.ingredients', 'row' => '100', 'cols' => '25']) ?>
                 <?= $this->Form->input('instructions', ['data-bind' =>'value:Recipe.instructions', 'row' => '10', 'cols' => '45']) ?>
                 <?= $this->Form->input('image', ['data-bind' =>'value:Recipe.image']) ?>
-                <?= $this->Form->input('tags', ['multiple' => true, 'options' => $tags]) ?>
+                <?= $this->Form->input('tags._ids', ['options' => $tags]) ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

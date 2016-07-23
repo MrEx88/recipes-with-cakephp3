@@ -25,23 +25,6 @@ class TagsController extends AppController
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id Tag id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $tag = $this->Tags->get($id, [
-            'contain' => ['RecipesTags']
-        ]);
-
-        $this->set('tag', $tag);
-        $this->set('_serialize', ['tag']);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
@@ -53,7 +36,7 @@ class TagsController extends AppController
             $tag = $this->Tags->patchEntity($tag, $this->request->data);
             if ($this->Tags->save($tag)) {
                 $this->Flash->success(__('The tag has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'recipes', 'action' => 'index']);
             } else {
                 $this->Flash->error(__('The tag could not be saved. Please, try again.'));
             }
