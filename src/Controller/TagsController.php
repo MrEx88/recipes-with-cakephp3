@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Tags Controller
@@ -46,28 +47,34 @@ class TagsController extends AppController
     }
 
     /**
-     * Edit method
+     * Edit method. Editing all tags at once.
      *
-     * @param string|null $id Tag id.
      * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit()
     {
-        $tag = $this->Tags->get($id, [
-            'contain' => []
-        ]);
+        $tags = $this->paginate($this->Tags);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $tag = $this->Tags->patchEntity($tag, $this->request->data);
-            if ($this->Tags->save($tag)) {
-                $this->Flash->success(__('The tag has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The tag could not be saved. Please, try again.'));
+            $tags = TableRegistry::get('Tags');
+            $tagData = [];
+            foreach($this->request->data as $key => $value)
+            {
+                $tagData[] = ['id' => $key, 'name' => $value];
             }
+            $updatedTags = $this->Tags->patchEntities($tags->find('all')->toArray(), $tagData);
+            foreach($updatedTags as $tag)
+            {
+                if (!$tags->save($tag)) {
+                    $this->Flash->error(__('The tags could not be updated. Please, try again.'));
+                    return;
+                }
+            }
+            $this->Flash->success(__('The tags has been updated.'));
+            return $this->redirect(['controller' => 'recipes', 'action' => 'index']);
         }
-        $this->set(compact('tag'));
-        $this->set('_serialize', ['tag']);
+        $this->set(compact('tags'));
+        $this->set('_serialize', ['tags']);
     }
 
     /**

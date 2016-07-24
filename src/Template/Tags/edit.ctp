@@ -1,11 +1,11 @@
 <div class="tags form large-9 medium-8 columns content">
-    <?= $this->Form->create($tag) ?>
+    <?= $this->Form->create($tags) ?>
     <fieldset>
-        <legend><?= __('Edit Tag') ?></legend>
-        <?php
-            echo $this->Form->input('name');
-        ?>
+        <legend><?= __('Edit Tags') ?></legend>
+        <?php foreach($tags as $tag):
+            echo $this->Form->input($tag->id, ['value' => $tag->name, 'label' => false]);
+        endforeach;?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Update')) ?>
     <?= $this->Form->end() ?>
 </div>
