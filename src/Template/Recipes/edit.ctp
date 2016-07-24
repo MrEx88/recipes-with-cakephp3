@@ -2,11 +2,17 @@
     <?= $this->Form->create($recipe) ?>
     <fieldset>
         <legend><?= __('Edit Recipe') ?></legend>
+        <div class="row">
+            <div class="col-md-8">
                 <?= $this->Form->input('name', ['data-bind' =>'value:Recipe.recipeName']) ?>
                 <?= $this->Form->input('ingredients', ['data-bind' =>'value:Recipe.ingredients', 'row' => '100', 'cols' => '25']) ?>
                 <?= $this->Form->input('instructions', ['data-bind' =>'value:Recipe.instructions, valueUdate:[\'onload\', \'afterkeydown\']', 'row' => '10', 'cols' => '45']) ?>
                 <?= $this->Form->input('image', ['data-bind' =>'value:Recipe.image']) ?>
-                <?= $this->Form->input('tags._ids', ['options' => $tags, 'multiple' => 'checkbox']) ?>
+            </div>
+            <div class="col-md-2">
+                <?= $this->Form->input('tags._ids', ['options' => $tags, 'multiple' => 'checkbox', 'label' => 'Recipe Tags']) ?>
+            </div>
+        </div>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
