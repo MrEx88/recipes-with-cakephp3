@@ -150,34 +150,24 @@ class RecipesController extends AppController
      */
     private function _getImageNameAndSave($image)
     {
-        // TODO: simplify logic and maybe move method to beforeSave(Commit)() method
         $filePath = WWW_ROOT . 'img' . DS;
         $fileName = "";
-        // if image is from google
-        if(preg_match("/(https:\/\/www.google.com\/imgres\?imgurl)/", $image))
+        if(preg_match("/(https?:\/\/)/", $image))
         {
             // decode url
-            $decode = urldecode($image);
-            //remove google section
-            $specialCharUrl = preg_replace("(https:\/\/www.google.com\/imgres\?imgurl=)", "", $decode);
-            //remove google imgrefurl section
-            $url = preg_replace("(&imgrefurl=[\w\d:\/\.\&\=\-\?\#]*)", "", $specialCharUrl);
-            $image = $url;
+            $image = urldecode($image);
             
+            if(preg_match("/(https:\/\/www.google.com\/imgres\?imgurl)/", $image))
+            {
+                //remove google section
+                $specialCharUrl = preg_replace("(https:\/\/www.google.com\/imgres\?imgurl=)", "", $image);
+                //remove google imgrefurl section
+                $image = preg_replace("(&imgrefurl=[\w\d:\/\.\&\=\-\?\#]*)", "", $specialCharUrl);
+            }
+	
             // remove url section
-            $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $image);
-            // remove special chars
-            $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
-            // save file
-            file_put_contents($filePath . $fileName, file_get_contents($image));
-        }
-        else if(preg_match("/(https?:\/\/)/", $image))
-        {   
-            // decode url
-            $decode = urldecode($image);
-            // remove url section
-            $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $decode);
-            // remove special chars
+             $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $image);
+             // remove special chars
             $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
             // save file
             file_put_contents($filePath . $fileName, file_get_contents($image));
