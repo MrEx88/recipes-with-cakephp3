@@ -11,20 +11,6 @@ use Cake\ORM\TableRegistry;
  */
 class TagsController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $tags = $this->paginate($this->Tags);
-
-        $this->set(compact('tags'));
-        $this->set('_serialize', ['tags']);
-    }
-
     /**
      * Add method
      *

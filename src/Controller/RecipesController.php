@@ -41,7 +41,6 @@ class RecipesController extends AppController
         
         if($this->request->params['_ext'] === 'pdf')
         {
-            // This is causing it to freeze for some reason   
             $this->viewBuilder()->options([
                 'pdfConfig' => [
                     'title' => $recipe->name . ' Recipe',
@@ -152,7 +151,6 @@ class RecipesController extends AppController
     private function _getImageNameAndSave($image)
     {
         // TODO: simplify logic and maybe move method to beforeSave(Commit)() method
-        //debug($image);
         $filePath = WWW_ROOT . 'img' . DS;
         $fileName = "";
         // if image is from google
@@ -172,33 +170,22 @@ class RecipesController extends AppController
             $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
             // save file
             file_put_contents($filePath . $fileName, file_get_contents($image));
-            
-            //debug('is google');
-            //exit(0);
         }
         else if(preg_match("/(https?:\/\/)/", $image))
         {   
             // decode url
             $decode = urldecode($image);
-            debug($decode);
             // remove url section
             $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $decode);
-            debug($name);
             // remove special chars
             $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
-            debug($fileName);
-            //exit(0);
             // save file
             file_put_contents($filePath . $fileName, file_get_contents($image));
-            //exit(0);
         }
         else if(preg_match("/[\w\d\-\_]*(\.jpg|\.png)/", $image))
         {
             // it is a image name already
             $fileName = $image;
-            
-            //debug('image already');
-            //exit(0);
         }
         
         return $fileName;

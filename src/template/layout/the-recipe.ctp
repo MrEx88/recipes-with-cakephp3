@@ -40,6 +40,7 @@ $appName = 'My Recipes';
 	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js') ?>
 </head>
 <body>
+       <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
 	 <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->element('header') ?>
@@ -56,10 +57,10 @@ $appName = 'My Recipes';
 <script>			
 	function Recipe() {
 		var self = this;
-		self.recipeName = ko.observable(<?= $recipe->name !== null ? "\"" . $recipe->name . "\"" : "\"\"" ?>);
-		self.ingredients = ko.observable(<?= $recipe->ingredients !== null ? "\"" . $recipe->ingredients . "\"" : "\"\"" ?>);
-		self.instructions = ko.observable(<?= $recipe->instructions !== null ? "\"" . $recipe->instructions . "\"" : "\"\"" ?>);
-		self.image = ko.observable(<?= $recipe->image !== null ? "\"" . $recipe->image . "\"" : "\"\"" ?>);
+		self.recipeName = ko.observable(<?= $recipe->name !== null ? (string)$recipe->name : "\"\"" ?>);
+		self.ingredients = ko.observable(<?= $recipe->ingredients !== null ? (string)$recipe->ingredients : "\"\"" ?>);
+		self.instructions = ko.observable(<?= $recipe->instructions !== null ? (string)$recipe->instructions : "\"\"" ?>);
+		self.image = ko.observable(<?= $recipe->image !== null ? (string)$recipe->image : "\"\"" ?>);
 
 		self.HasIngredients = ko.computed(function() {
 			return self.ingredients() !== "";
