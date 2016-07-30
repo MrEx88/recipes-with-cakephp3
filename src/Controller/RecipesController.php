@@ -131,7 +131,7 @@ class RecipesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
-    public function tags()
+    public function search()
     {
         $tags = $this->request->params['pass'];
         
