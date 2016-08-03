@@ -17,12 +17,14 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <?= $this->Form->create() ?>
+                <?= $this->Form->create(null, ['type' => 'GET', 'url' => ['controller' => 'Recipes', 'action' => 'search']]) ?>
                 <li>
-                    <?= $this->Form->iconPostLink('', ['controller' => 'recipes', 'action' => 'tags'], 'search', ['class' => 'header-form-post']) ?>
+                    <?= $this->Form->input('q', ['div' => false, 'label' => false, 'placeholder' => 'Search', 'id' => 'search_keywords']) ?>
                 </li>
                 <li>
-                    <?= $this->Form->input('', ['placeholder' => 'Search']) ?>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+				    </span>                    
                 </li>
                 <?= $this->Form->end() ?>
             </ul>

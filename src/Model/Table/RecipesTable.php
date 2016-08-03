@@ -114,4 +114,25 @@ class RecipesTable extends Table
                 return $q->where(['Tags.name IN' => $options['tags']]);
             });
     }
+    
+    /**
+     * Returns a query object of recipes associated search.
+     *
+     * @param \Cake\ORM\Query $query The query object to be modified.
+     * @param array $options The key/value array passed through.
+     * @return \Cake\ORM\Query
+     */
+    public function findSearch(Query $query, array $options)
+    {        
+        $recipes = $query
+               ->contain('Tags')
+               ->where(['Recipes.name LIKE' => '%' . $options['tags'][0] . '%']);
+        
+        for($i = 1; $i < count($options['tags']); $i++)
+        {
+            $recipes->orWhere(['Recipes.name LIKE' => '%' . $options['tags'][$i] . '%']);
+        }
+        
+        return $recipes;
+    }
 }
