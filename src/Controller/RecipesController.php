@@ -21,7 +21,9 @@ class RecipesController extends AppController
      */
     public function index()
     {
-        $recipes = $this->paginate($this->Recipes);
+        $recipes = $this->Recipes->find('all')
+            ->contain(['Tags']);
+        $recipes = $this->paginate($recipes);
         $this->set(compact('recipes'));
         $this->set('_serialize', ['recipes']);
     }
@@ -131,13 +133,18 @@ class RecipesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
+    /**
+     * Search method
+     *
+     * @return \Cake\Network\Response|null
+     */
     public function search()
     {
         $tags = $this->request->params['pass'];
         
-        $recipes = $this->Recipes->find('tags', [
-            'tags' => $tags
-        ]);
+        $recipes = $this->Recipes->find('tags', ['tags' => $tags])
+            ->contain(['Tags']);
+        
         $recipes = $this->paginate($recipes);
         $this->set(['recipes' => $recipes, 'tags' => $tags]);
     }

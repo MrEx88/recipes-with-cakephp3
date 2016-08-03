@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <h1>My Recipes</h1>
+                <h1><?= $this->Html->link(__('My Recipes'), ['controller' => 'Recipes', 'action' => 'index']) ?></h1>
             </div>
             <ul class="nav navbar-nav navbar-left">
                 <li>

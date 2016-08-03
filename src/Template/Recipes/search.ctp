@@ -17,11 +17,16 @@
                     <?= $this->Html->link($recipe->name, ['controller' => 'Recipes', 'action' => 'view', $recipe->id]) ?>
             <?php endif; ?>
         </div>
-        <div class="recipe-tags">Tags:  
-                <?php foreach($this->Query->getTags($recipe->id) as $tag) {
-                        echo $this->Html->link($tag, ['action' => 'tags', $tag]);
-                        echo '&nbsp;';
+        <div class="recipe-tags">
+        <?php if(count($recipe->tags) <= 3): ?>
+            Tags:
+            <?php foreach($recipe->tags as $tag) {
+                    echo $this->Html->link($tag->name, ['action' => 'search', $tag->name]);
+                    echo '&nbsp;';
                 }?>
+        <?php else: ?>
+            <?= $this->Form->input('Recipe.tags', ['type' => 'select', 'options' => $this->Query->getTags($recipe->tags), 'label' => 'Tags:', 'style' => 'height: 22px; padding: 0px']) ?>
+        <?php endif; ?>
         </div>
     </div>
     <?php endforeach; ?>

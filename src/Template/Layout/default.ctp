@@ -40,6 +40,7 @@ $appName = 'My Recipes';
     <?= $this->Html->script("http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js") ?>
 	<?= $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js') ?>
 	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js') ?>
+    <?= $this->Html->script('tags-dropdown') ?>
 </head>
 <body>
     <div class="container">

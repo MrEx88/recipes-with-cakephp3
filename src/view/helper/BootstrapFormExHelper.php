@@ -10,13 +10,9 @@ class BootstrapFormExHelper extends BootstrapFormHelper
     public $helpers = ['Html', 'Url'];
 	
 	/**
-	* Checks whether or not the URL action should be authorized against ACL.
-	* If the key 'acl' is set to true in the $options array, the action will
-	* be authorized against ACL using the current user.
+	* Post Link method.
 	*
-	* @return string Requested link if the 'acl' key is false.  If the 'acl' key
-	*				 is true, the requested link is returned if the user is
-	*				 authorized, empty string otherwise.
+	* @return string Requested link.
 	*/
     public function postLink($title, $url = null, array $options = [])
 	{
