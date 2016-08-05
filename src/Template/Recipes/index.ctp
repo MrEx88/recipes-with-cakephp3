@@ -33,10 +33,12 @@
     
     <div class="paginator col-xs-12">
         <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('First')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('Last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter() ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}. Showing {{current}} records out of {{count}}.')]) ?></p>
     </div>
 </div>
