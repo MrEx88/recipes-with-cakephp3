@@ -173,7 +173,7 @@ class RecipesController extends AppController
             }
 	
             // remove url section
-             $name = preg_replace("(https?:\/\/[a-zA-Z\.\/\?\#\=\-\_0-9]*\/)", "", $image);
+             $name = preg_replace("(https?:\/\/[\w\:\.\%\/\?\#\=\-\_\d]*\/)", "", $image);
              // remove special chars
             $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
             // save file
