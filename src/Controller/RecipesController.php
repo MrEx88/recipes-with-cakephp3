@@ -140,10 +140,22 @@ class RecipesController extends AppController
      */
     public function search()
     {
-        $tags = $this->request->params['pass'];
+        if(isset($this->request->query['q']))
+        {
+            $tags = $this->_toArray($this->request->query['q']);
+            $recipes = $this->Recipes->find('search', ['tags' => $tags]);
+        }
+        elseif(count($this->request->params['pass']) > 0)
+        {
+            $tags = $this->request->params['pass'];
         
-        $recipes = $this->Recipes->find('tags', ['tags' => $tags])
+            $recipes = $this->Recipes->find('tags', ['tags' => $tags])
             ->contain(['Tags']);
+        }
+        else
+        {
+            $this->redirect(['action' => 'index']);
+        }
         
         $recipes = $this->paginate($recipes);
         $this->set(['recipes' => $recipes, 'tags' => $tags]);
@@ -186,5 +198,32 @@ class RecipesController extends AppController
         }
         
         return $fileName;
+    }
+    
+    /**
+     * Gets search string and turns into array.
+     * 
+     * @param $str Request query string.
+     * @return Array of what user typed in.
+     */
+    private function _toArray($str)
+    {
+        $array = [];
+        $temp = "";
+        for($i = 0; $i < strlen($str); $i++)
+        {
+            if($str[$i] == ' ')
+            {
+                $array[] = $temp;
+                $temp = "";
+            }
+            else
+            {
+                $temp .= $str[$i];
+            }
+        }
+        $array[] = $temp;
+        
+        return $array;
     }
 }
