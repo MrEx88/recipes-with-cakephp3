@@ -43,8 +43,9 @@ $appName = 'My Recipes';
     <?= $this->Html->script('tags-dropdown') ?>
 </head>
 <body>
+    <?= $this->element('header') ?>
     <div class="container">
-        <?= $this->element('header') ?>
+        
         <?= $this->Flash->render() ?>
 <!--        <div class="container">-->
             <?= $this->fetch('content') ?>
