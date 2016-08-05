@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-6">
         <?php if($recipe->image !== ""): ?>
-            <img src="<?= WWW_ROOT ?>img\<?= $recipe->image ?>" />
+            <img src="<?= WWW_ROOT ?>img/<?= $recipe->image ?>" />
         <?php endif; ?>
         </div>
     </div>

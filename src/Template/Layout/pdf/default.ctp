@@ -26,9 +26,12 @@ $appName = 'My Recipes';
     </title>
     <?= $this->Html->meta('icon') ?>
     
+    
+    <!-- For Windows: It needs to be file system paths -->
     <!-- TODO: Figure out how to get this css to work -->
-    <?= $this->Html->css('bootstrap.css', ['_fullBase' => true]) ?>
-
+    <link href='<?= WWW_ROOT ?>css\bootstrap.css' rel='stylesheet' type='text/css' />
+    <link href='<?= WWW_ROOT ?>css\recipes.css' rel='stylesheet' type='text/css' />
+    
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
 </head>
