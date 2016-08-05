@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Utility\Text;
 
 /**
  * Recipes Controller
@@ -71,7 +72,7 @@ class RecipesController extends AppController
         $recipe = $this->Recipes->newEntity();
         if ($this->request->is('post')) {
             $recipe = $this->Recipes->patchEntity($recipe, $this->request->data);
-            $recipe->image = $this->_getImageNameAndSave($recipe->image);
+            $recipe->image = $this->_getImageNameAndSave($recipe->image, $recipe->name);
             if ($this->Recipes->save($recipe)) {
                 $this->Flash->success(__('The recipe has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -101,7 +102,7 @@ class RecipesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $recipe = $this->Recipes->patchEntity($recipe, $this->request->data);
-            $recipe->image = $this->_getImageNameAndSave($recipe->image);
+            $recipe->image = $this->_getImageNameAndSave($recipe->image, $recipe->name);
             if ($this->Recipes->save($recipe)) {
                 $this->Flash->success(__('The recipe has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -162,38 +163,38 @@ class RecipesController extends AppController
     }
     
     /**
-     * Gets image name by stripping the url portion of it and also downloads the file.
+     * Downloads image from url saves the file using the formatted recipe name.
      * 
      * @param $image The url image to use.
+     * @param $name Name of recipe.
      * @return The image with just the file name.
      */
-    private function _getImageNameAndSave($image)
+    private function _getImageNameAndSave($image, $name)
     {
         $filePath = WWW_ROOT . 'img' . DS;
-        $fileName = "";
+        $fileName = Text::slug(strtolower($name)) . '.jpg';
+        
         if(preg_match("/(https?:\/\/)/", $image))
         {
-            // decode url
+            // Decode url.
             $image = urldecode($image);
             
+            // If image is from google.
             if(preg_match("/(https:\/\/www.google.com\/imgres\?imgurl)/", $image))
             {
-                //remove google section
+                // TODO: Maybe combine these two statements below.
+                // Remove google section.
                 $specialCharUrl = preg_replace("(https:\/\/www.google.com\/imgres\?imgurl=)", "", $image);
-                //remove google imgrefurl section
+                // Remove google imgrefurl section.
                 $image = preg_replace("(&imgrefurl=[\w\d:\/\.\&\=\-\?\#]*)", "", $specialCharUrl);
             }
-	
-            // remove url section
-             $name = preg_replace("(https?:\/\/[\w\:\.\%\/\?\#\=\-\_\d]*\/)", "", $image);
-             // remove special chars
-            $fileName = preg_replace("([\+\?\:\<\>\|\s])", "-", $name);
-            // save file
+
+            // Save file.
             file_put_contents($filePath . $fileName, file_get_contents($image));
         }
         else if(preg_match("/[\w\d\-\_]*(\.jpg|\.png)/", $image))
         {
-            // it is a image name already
+            // It is a image name already.
             $fileName = $image;
         }
         
