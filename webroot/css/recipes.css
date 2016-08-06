@@ -1,9 +1,9 @@
 /**
  * HEADER
  */
-
 .header {
-    position: fixed; 
+    position: fixed;
+    top: 0px;
     width: 100%;
     z-index: 100;
 }
@@ -12,25 +12,16 @@
     color: #4d4d4d;
 }
 
-
-.header-form-post {
-    vertical-align: -30px;
-    margin-left: 8px;
-    margin-right: 8px;
-}
-
-
-.header input {
-    margin-top: 20px;
-}
-
 #header-link {
     vertical-align: -30px;
 }
 
-li #header-link
-{
+li #header-link {
     margin-left: 8px;
+}
+
+.input-group {
+    margin-top: 5px;
 }
 
 /**
@@ -38,13 +29,12 @@ li #header-link
  */
 .container {
     background-color: #FFF;
+    margin-top: 50px;
     padding-left: 0px;
     padding-right: 0px;
 }
 
-/**
- * Recipes/index
- */
+/* recipes/index */
 .recipe-actions {
     border-bottom: 1px solid darkgray;
     text-align: right;
@@ -97,4 +87,17 @@ img.recipe-image {
 .recipe-tags {
     margin-left: 5px;
     margin-right: 5px;
+}
+/* /recipes/add & /recipes/edit */
+.p-note {
+    font-size: .6em;
+    margin-top: -10px;
+    margin-bottom: 3px;
+}
+
+/**
+ * FOOTER
+ */
+footer {
+    text-align: center;
 }

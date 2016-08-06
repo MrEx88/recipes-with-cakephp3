@@ -30,6 +30,8 @@ $appName = 'My Recipes';
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('site.css') ?>
+    <?= $this->Html->css('recipes.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -40,11 +42,12 @@ $appName = 'My Recipes';
 	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js') ?>
 </head>
 <body>
-       <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
-	 <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->element('header') ?>
+    <?= $this->element('header') ?>
+    <div class="container">
+        <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
+        <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
+        
 		<h1><span data-bind="text:Recipe.recipeName, valueUdate:['onload', 'afterkeydown']"></span></h1>
 		<img width="200px" height="200px" data-bind="attr:{src:Recipe.image}, visible:Recipe.HasImage" />
 		<h4 data-bind="visible:Recipe.HasIngredients">Ingredients</h4>
@@ -53,6 +56,9 @@ $appName = 'My Recipes';
 		<p><span data-bind="text:Recipe.instructions, valueUdate:['onload', 'afterkeydown']"></span></p>
 	</div>
 </body>
+<footer>
+    <p>&copy;&nbsp;<?=date('Y')?> My Recipes site, Powered by CakePHP <?= $this->Misc->getCakeVersion() ?></p>
+</footer>
 
 <script>			
 	function Recipe() {

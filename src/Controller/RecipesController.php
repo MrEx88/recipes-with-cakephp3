@@ -141,7 +141,7 @@ class RecipesController extends AppController
      */
     public function search()
     {
-        if(isset($this->request->query['q']))
+        if(isset($this->request->query['q']) && $this->request->query['q'] != '')
         {
             $tags = $this->_toArray($this->request->query['q']);
             $recipes = $this->Recipes->find('search', ['tags' => $tags]);
@@ -155,7 +155,7 @@ class RecipesController extends AppController
         }
         else
         {
-            $this->redirect(['action' => 'index']);
+            return $this->redirect(['action' => 'index']);
         }
         
         $recipes = $this->paginate($recipes);

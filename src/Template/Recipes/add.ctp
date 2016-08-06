@@ -9,8 +9,10 @@
                 <?= $this->Form->input('instructions', ['data-bind' =>'value:Recipe.instructions', 'row' => '10', 'cols' => '45']) ?>
                 <?= $this->Form->input('image', ['data-bind' =>'value:Recipe.image']) ?>
             </div>
-            <div class="col-md-2">
-                <?= $this->Form->input('tags._ids', ['options' => $tags, 'label' => 'Recipe Tags']) ?>
+            <div class="col-md-4">
+                <h6>Recipe Tags</h6>
+                <p class='p-note'>(hold CTRL to select more than one tag)</p>
+                <?= $this->Form->input('tags._ids', ['options' => $tags, 'label' => false]) ?>
             </div>
         </div>
     </fieldset>
