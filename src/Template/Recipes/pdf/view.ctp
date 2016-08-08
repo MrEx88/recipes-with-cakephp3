@@ -1,4 +1,4 @@
-<div class="recipes view large-9 medium-8 columns content">
+<div class="recipes view columns content">
     <h3><legend><?= h($recipe->name) ?></legend></h3>
     <br/><br/>
     <div class="row">
@@ -13,6 +13,7 @@
         <?php endif; ?>
         </div>
     </div>
-        <h4><legend><?= __('Instructions') ?></legend></h4>
-        <?= $this->Text->autoParagraph(h($recipe->instructions)); ?>
+    <br/>
+    <h4><legend><?= __('Instructions') ?></legend></h4>
+    <?= $this->Text->autoParagraph(h($recipe->instructions)); ?>
 </div>

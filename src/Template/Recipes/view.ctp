@@ -1,4 +1,4 @@
-<div class="recipes view large-9 medium-8 columns content">
+<div class="recipes view columns content">
     <h3><?= h($recipe->name) ?></h3>
     <div class="row">
         <div class="col-md-6">
@@ -11,27 +11,13 @@
         <?php endif; ?>
         </div>
     </div>
-    <div class="row">
-        <h4><?= __('Instructions') ?></h4>
-        <?= $this->Text->autoParagraph(h($recipe->instructions)); ?>
-    </div>
-<!-- TODO: Provide Tag link navigations -->
-    <!-- <div class="related">
-        <h4><?= __('Related Recipe Tags') ?></h4>
-        <?php if (!empty($recipe->recipes_tags)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th><?= __('Recipe Id') ?></th>
-                <th><?= __('Tag Id') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($recipe->recipes_tags as $recipesTags): ?>
-            <tr>
-                <td><?= h($recipesTags->recipe_id) ?></td>
-                <td><?= h($recipesTags->tag_id) ?></td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div> -->
+    <h4><?= __('Instructions') ?></h4>
+    <?= $this->Text->autoParagraph(h($recipe->instructions)); ?>
+    <br />
+    <?php if (count($recipe->tags) > 0): ?>
+    <pre><h5>Tags: <?php foreach($recipe->tags as $tag) {
+            echo $this->Html->link($tag->name, ['action' => 'search', $tag->name]);
+            echo '&nbsp;';
+    }?></h5></pre>
+    <?php endif; ?>
 </div>

@@ -40,6 +40,8 @@ class TagsController extends AppController
      */
     public function edit()
     {
+        $this->Flash->warning(__('Changing the name of tags will affect recipes that are using that tag.'));
+        
         $tags = $this->paginate($this->Tags);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $tags = TableRegistry::get('Tags');
