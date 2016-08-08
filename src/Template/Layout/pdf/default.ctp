@@ -37,17 +37,11 @@ $appName = 'My Recipes';
 </head>
 <body>
     <div class="container">
-        <?= $this->Flash->render() ?>
-        <div class="container">
-            <?= $this->fetch('content') ?>
-        </div>
-        <footer>
-            <div class="row bottom">
-                <div class="col-xs-12 col-sm-8 copyright">
-                    &copy;&nbsp;<?=date('Y')?> My Recipes, Powered by CakePHP <?= $this->Misc->getCakeVersion() ?>
-                </div>
-            </div>
-        </footer>
+        <?= $this->fetch('content') ?>
+        
     </div>
 </body>
+<footer>
+    <p>&copy;&nbsp;<?=date('Y')?> My Recipes site, Powered by CakePHP <?= $this->Misc->getCakeVersion() ?></p>
+</footer>
 </html>

@@ -195,7 +195,11 @@ td,
 th {
   padding: 0;
 }
+/* Commented out because of this:
+ * http://stackoverflow.com/questions/28405505/using-wkhtmltopdf-with-bootstrap-3-removes-color-styles
+ */
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+/*
 @media print {
   *,
   *:before,
@@ -206,6 +210,7 @@ th {
             box-shadow: none !important;
     text-shadow: none !important;
   }
+*/
   a,
   a:visited {
     text-decoration: underline;

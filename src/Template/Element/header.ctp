@@ -16,10 +16,10 @@
     <ul class="nav navbar-nav">
       <li><?= $this->Html->link('Add Recipe', ['controller' => 'Recipes', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?></li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recipe Tags <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><?= $this->Html->link('Add Tag', ['controller' => 'Tags', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?></li>
-          <li><?= $this->Html->link('Edit Tags', ['controller' => 'Tags', 'action' => 'edit'], ['class' => 'nav-item nav-link active']) ?></li>
+          <li><?= $this->Html->link('Add a tag', ['controller' => 'Tags', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?></li>
+          <li><?= $this->Html->link('Edit tags', ['controller' => 'Tags', 'action' => 'edit'], ['class' => 'nav-item nav-link active']) ?></li>
 <!--          <li class="divider"></li>-->
         </ul>
       </li>
