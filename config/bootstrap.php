@@ -202,7 +202,7 @@ Configure::write('CakePdf', [
     'margin' => [
         'top' => 35,
         'left' => 15,
-        'bottom' => 30,
+        'bottom' => 25,
         'right' => 15
     ],
     'download' => false,

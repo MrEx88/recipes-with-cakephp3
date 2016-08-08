@@ -24,6 +24,7 @@
         </ul>
       </li>
     </ul>
+      <!-- in Chrome this does not display as a navbar-right -->
     <ul class="nav navbar-nav navbar-right">
       <li>
           <?= $this->Form->create(null, ['type' => 'GET', 'url' => ['controller' => 'Recipes', 'action' => 'search'], ['class' => 'navbar-form', 'role' => 'search']]) ?>

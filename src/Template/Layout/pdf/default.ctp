@@ -26,9 +26,7 @@ $appName = 'My Recipes';
     </title>
     <?= $this->Html->meta('icon') ?>
     
-    
     <!-- For Windows: It needs to be file system paths -->
-    <!-- TODO: Figure out how to get this css to work -->
     <link href='<?= WWW_ROOT ?>css\bootstrap.css' rel='stylesheet' type='text/css' />
     <link href='<?= WWW_ROOT ?>css\recipes.css' rel='stylesheet' type='text/css' />
     
@@ -41,7 +39,9 @@ $appName = 'My Recipes';
         
     </div>
 </body>
+<!-- TODO: find out if you can make footer stay on bottom of pdf
 <footer>
     <p>&copy;&nbsp;<?=date('Y')?> My Recipes site, Powered by CakePHP <?= $this->Misc->getCakeVersion() ?></p>
 </footer>
+-->
 </html>
