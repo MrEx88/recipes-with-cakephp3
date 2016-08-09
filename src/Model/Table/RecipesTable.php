@@ -126,11 +126,11 @@ class RecipesTable extends Table
     {        
         $recipes = $query
                ->contain('Tags')
-               ->where(['Recipes.name LIKE' => '%' . $options['tags'][0] . '%']);
+               ->where(['Recipes.name LIKE' => '%' . $options['words'][0] . '%']);
         
-        for($i = 1; $i < count($options['tags']); $i++)
+        for($i = 1; $i < count($options['words']); $i++)
         {
-            $recipes->orWhere(['Recipes.name LIKE' => '%' . $options['tags'][$i] . '%']);
+            $recipes->orWhere(['Recipes.name LIKE' => '%' . $options['words'][$i] . '%']);
         }
         
         return $recipes;

@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Utility\Text;
 
+use App\Model\Entity\Recipe;
+
 /**
  * Recipes Controller
  *
@@ -72,7 +74,7 @@ class RecipesController extends AppController
         $recipe = $this->Recipes->newEntity();
         if ($this->request->is('post')) {
             $recipe = $this->Recipes->patchEntity($recipe, $this->request->data);
-            $recipe->image = $this->_getImageNameAndSave($recipe->image, $recipe->name);
+            $recipe->image = $this->_getImageNameAndSave($recipe);
             if ($this->Recipes->save($recipe)) {
                 $this->Flash->success(__('The recipe has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -102,7 +104,7 @@ class RecipesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $recipe = $this->Recipes->patchEntity($recipe, $this->request->data);
-            $recipe->image = $this->_getImageNameAndSave($recipe->image, $recipe->name);
+            $recipe->image = $this->_getImageNameAndSave($recipe);
             if ($this->Recipes->save($recipe)) {
                 $this->Flash->success(__('The recipe has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -143,8 +145,8 @@ class RecipesController extends AppController
     {
         if(isset($this->request->query['q']) && $this->request->query['q'] != '')
         {
-            $tags = $this->_toArray($this->request->query['q']);
-            $recipes = $this->Recipes->find('search', ['tags' => $tags]);
+            $words = $this->_toArray($this->request->query['q']);
+            $recipes = $this->Recipes->find('search', ['words' => $words]);
         }
         elseif(count($this->request->params['pass']) > 0)
         {
@@ -165,14 +167,14 @@ class RecipesController extends AppController
     /**
      * Downloads image from url saves the file using the formatted recipe name.
      * 
-     * @param $image The url image to use.
-     * @param $name Name of recipe.
+     * @param $recipe The recipe entity to use.
      * @return The image with just the file name.
      */
-    private function _getImageNameAndSave($image, $name)
+    private function _getImageNameAndSave(Recipe $recipe)
     {
+        $image = $recipe->image;
         $filePath = WWW_ROOT . 'img' . DS;
-        $fileName = Text::slug(strtolower($name)) . '.jpg';
+        $fileName = Text::slug(strtolower($recipe->name)) . '.jpg';
         
         if(preg_match("/(https?:\/\/)/", $image))
         {
@@ -189,6 +191,8 @@ class RecipesController extends AppController
                 $image = preg_replace("(&imgrefurl=[\w\d:\/\.\&\=\-\?\#]*)", "", $specialCharUrl);
             }
 
+            // TODO: Add regex for other search engines. Bing doesn't seem possible
+
             // Save file.
             file_put_contents($filePath . $fileName, file_get_contents($image));
         }
@@ -196,6 +200,12 @@ class RecipesController extends AppController
         {
             // It is a image name already.
             $fileName = $image;
+
+            // Is image being renamed?
+            if($recipe->getOriginal('image') != '' && file_exists($filePath . $recipe->getOriginal('image')))
+            {
+                rename($filePath . $recipe->getOriginal('image'), $filePath .  $fileName);
+            }
         }
         
         return $fileName;
