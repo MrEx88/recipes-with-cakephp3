@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-6">
         <h4><?= __('Ingredients') ?></h4>
-            <?= $this->Text->autoParagraph(h($recipe->ingredients)); ?>
+        <?= $this->Text->autoParagraph($recipe->ingredients_list) ?>
         </div>
         <div class="col-md-6">
         <?php if($recipe->image !== ""): ?>

@@ -32,4 +32,25 @@ class Recipe extends Entity
         '*' => true,
         'id' => false
     ];
+
+    /**
+     * Gets the ingredients and puts a hyphen infront of each ingredient.
+     *
+     * @return Delimited ingredients.
+     */
+    protected function _getIngredientsList()
+    {
+        $delimiter = "- &nbsp;";
+        $list = $this->_properties['ingredients'];
+        $list = $delimiter . $list;
+        for($i = 0; $i < strlen($list); $i++)
+        {
+            if (substr($list, $i, 1) == "\n")
+            {
+                $list = substr_replace($list, $delimiter, $i+1, 0);
+            }
+        }
+
+        return $list;
+    }
 }

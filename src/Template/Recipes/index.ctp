@@ -20,15 +20,19 @@
         <div class="recipe-tags">
         <?php if(count($recipe->tags) <= 3): ?>
             Tags:
-            <?php foreach($recipe->tags as $tag) {
-                    echo $this->Html->link($tag->name, ['action' => 'search', $tag->name]);
-                    echo '&nbsp;';
+            <?php $i = 1; foreach($recipe->tags as $tag) {
+                    echo $this->Html->link($tag->name, ['controller' => 'Recipes', 'action' => 'search', $tag->name]);
+                    if($i != count($recipe->tags))
+                    {
+                        echo ", ";
+                        $i++;
+                    }
                 }?>
         <?php else: ?>
-            <?= $this->Form->input('Recipe.tags', ['type' => 'select', 'options' => $this->Query->getTags($recipe->tags), 'label' => 'Tags:', 'style' => 'height: 22px; padding: 0px']) ?>
+            <?= $this->Form->input('Recipe.tags', ['type' => 'select', 'options' => $this->Misc->getNames($recipe->tags), 'label' => 'Tags:', 'style' => 'height: 22px; padding: 0px']) ?>
         <?php endif; ?>
         </div>
-    </div>
+    </div> <!-- end recipe-col -->
     <?php endforeach; ?>
     
     <div class="paginator col-xs-12">
