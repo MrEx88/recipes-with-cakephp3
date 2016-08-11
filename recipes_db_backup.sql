@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2016 at 05:01 AM
+-- Generation Time: Aug 11, 2016 at 05:56 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -23,6 +23,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bookmarks`
+--
+
+CREATE TABLE IF NOT EXISTS `bookmarks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `bookmarks`
+--
+
+INSERT INTO `bookmarks` (`id`, `name`, `url`, `created`, `modified`) VALUES
+(1, 'Paleo Diet', 'http://paleoleap.com/paleo-diet-recipes/', '2016-08-11 03:21:54', '2016-08-11 03:21:54'),
+(2, 'Budget Bytes', 'http://www.budgetbytes.com', '2016-08-11 03:22:52', '2016-08-11 03:22:52'),
+(3, 'Living Chirpy', 'http://www.livingchirpy.com/', '2016-08-11 03:23:27', '2016-08-11 03:23:27');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `recipes`
 --
 
@@ -36,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `recipes`
@@ -70,7 +94,8 @@ INSERT INTO `recipes` (`id`, `name`, `ingredients`, `instructions`, `image`, `cr
 (34, 'Chimichurri', '1 cup (packed) fresh Italian parsley\r\n1/2 cup olive oil\r\n1/3 cup red wine vinegar\r\n1/4 cup (packed) fresh cilantro\r\n2 garlic cloves, peeled\r\n3/4 teaspoon dried crushed red pepper\r\n1/2 teaspoon ground cumin\r\n1/2 teaspoon salt', 'Add ingredients to food processor and blend.', 'Chimichurri.jpg', '2016-08-05 02:18:43', '2016-08-05 02:26:30'),
 (35, 'Red Pepper Steak Sauce', '2 large red bell peppers, roasted\r\n1 small garlic clove, chopped\r\n1 small shallot, finely chopped\r\n2 tbsp cider vinegar\r\n2 tbsp worcestershire sauce\r\n1 tbsp honey or molasses\r\n1/2 tsp red-peper flakes\r\n2 tbsp olive oil', 'Puree the peppers in a blender with the garlic, shallot, vinegar, Worcestershire, honey, and red-pepper flakes; add salt and pepper to taste. Heat the olive oil in a medium saucepan on medium. Pour in the sauce and bring it to a boil on high, stirring often. Lower the heat to medium; simmer until the sauce is slightly thickened, about 6 minutes.', '', '2016-08-05 02:40:09', '2016-08-05 02:40:26'),
 (36, 'Chile Verde', '2.5 lb pork shoulder roast, cut into ½ inch cubes\r\n2 lbs tomatillos\r\n2 cups chicken stock\r\n2 tablespoons coconut oil\r\n1 yellow onion, diced\r\n4 garlic cloves, minced\r\n1 bunch cilantro\r\nJuice from 1 lime\r\n1 jalapeno\r\n1 tablespoon cumin\r\n½ teaspoon smoked paprika\r\n½ teaspoon black pepper\r\nSea salt to taste', 'Heat the coconut oil over medium high in a large soup pot and add the pork once the oil is hot enough that it sizzles when you add a piece of meat.  Brown the pork pieces for 4-5 minutes and remove the pork from the pan with a slotted spoon and set aside.  Add the onions and garlic to the oil and pork drippings and sauté for 7-10 min or until the onions start to brown.  Turn the heat down a bit and add the cumin, paprika and black pepper to the onions and garlic and mix well (it will be kind of pasty).  Add the chicken broth to the onion mixture and mix well, making sure to scrape all the goodness off the bottom of the pan.  Add the pork back to the soup pot into the liquid and bring to a boil.  Turn down to low. While the meat simmers, peel and wash the tomatillos.  Dry them well and in a large skillet over medium heat char them along with the jalapeno turning often, until the skins start to blacken (about 10 minutes).  Place the charred tomatillos, jalapeno, cilantro, and lime juice into a food processer or blender and blend until smooth.  Add to the pork in the soup pot and simmer for 2 to 2 ½ hours or until the pork is fall apart tender.  The sauce will reduce down and become thicker over the course of the cooking process. Serve with sliced avocado and cilantro for garnish.', '321691.jpg', '2016-08-05 02:48:04', '2016-08-05 02:48:04'),
-(37, 'Low Carb Breakfast Burrito', '2 eggs\r\nto taste salt\r\nto taste pepper\r\n2 tsp butter\r\n1 cup romaine lettuce [chopped]\r\n1 roma tomato [sliced]\r\n4 bacon strips [cooked crisp]\r\n1/2 avocado [sliced]', 'Mix the eggs well with the heavy cream, salt and pepper. Heat up a non-stick pan to a medium heat. Melt half the butter and add half the egg mixture. Tilt the pan back and forth to ensure it covers the entire base. Cover the pan and cook for about a minute.\r\n\r\nWhen you are able to move the entire crepe when shaking the pan back and forth, flip it over with a spatula. When it''s fully cooked, transfer to a paper towel to remove excess oiliness. Repeat with the other half of the egg mix. Add the lettuce, tomato, bacon and avocado. Season with salt and pepper. ', 'DSC03675.jpg-w=667', '2016-08-05 02:55:37', '2016-08-05 02:55:37');
+(37, 'Low Carb Breakfast Burrito', '2 eggs\r\nto taste salt\r\nto taste pepper\r\n2 tsp butter\r\n1 cup romaine lettuce [chopped]\r\n1 roma tomato [sliced]\r\n4 bacon strips [cooked crisp]\r\n1/2 avocado [sliced]', 'Mix the eggs well with the heavy cream, salt and pepper. Heat up a non-stick pan to a medium heat. Melt half the butter and add half the egg mixture. Tilt the pan back and forth to ensure it covers the entire base. Cover the pan and cook for about a minute.\r\n\r\nWhen you are able to move the entire crepe when shaking the pan back and forth, flip it over with a spatula. When it''s fully cooked, transfer to a paper towel to remove excess oiliness. Repeat with the other half of the egg mix. Add the lettuce, tomato, bacon and avocado. Season with salt and pepper. ', 'low-carb-breakfast-burrito.jpg', '2016-08-05 02:55:37', '2016-08-06 15:38:36'),
+(38, 'African Peanut Butter Stew', '1 lb chicken\r\n1/2 onion, chopped\r\n3/4 cup white rice\r\n3/4 cup broth\r\n1 red bell pepper, chopped\r\n2/3 cup milk\r\n2-4 garlic cloves, minced\r\n3 tb peanut butter\r\n2 tomatoes, chopped\r\n1 small sweet potato,chopped\r\nhandful of spinach\r\ncayenne pepper\r\nsalt', 'Preheat of to 450 degrees.\r\n\r\nPut chopped onion in crockpot. Rinse rice and add to pot along with broth. Place chicken on top of rice; then add bell pepper. Mix milk, garlic, cayenne pepper, salt, peanut butter together until peanut butter dissolves then pour over chicken. Add the tomatoes, sweet potato, and spinach.\r\n\r\nBake for 45 minutes.', 'afrian-peanut-butter-stew.jpg', '2016-08-06 17:21:31', '2016-08-11 02:51:51');
 
 -- --------------------------------------------------------
 
@@ -104,6 +129,7 @@ INSERT INTO `recipes_tags` (`recipe_id`, `tag_id`) VALUES
 (20, 2),
 (25, 2),
 (28, 2),
+(38, 2),
 (2, 3),
 (5, 3),
 (6, 3),
@@ -121,7 +147,9 @@ INSERT INTO `recipes_tags` (`recipe_id`, `tag_id`) VALUES
 (20, 7),
 (34, 10),
 (35, 10),
-(36, 11);
+(36, 11),
+(37, 11),
+(38, 12);
 
 -- --------------------------------------------------------
 
@@ -136,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `tags`
@@ -152,7 +180,8 @@ INSERT INTO `tags` (`id`, `name`, `created`, `modified`) VALUES
 (8, 'shellfish', '2016-07-23 22:47:50', '2016-07-23 22:47:50'),
 (9, 'vegan', '2016-07-23 22:49:54', '2016-07-23 22:49:54'),
 (10, 'sauce', '2016-08-05 02:26:15', '2016-08-05 02:26:15'),
-(11, 'paleo', '2016-08-05 02:45:32', '2016-08-05 02:48:25');
+(11, 'paleo', '2016-08-05 02:45:32', '2016-08-05 02:48:25'),
+(12, 'crockpot meals', '2016-08-06 17:06:31', '2016-08-06 17:06:31');
 
 --
 -- Constraints for dumped tables
