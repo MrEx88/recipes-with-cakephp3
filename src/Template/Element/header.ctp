@@ -14,15 +14,25 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li><?= $this->Html->link('Add Recipe', ['controller' => 'Recipes', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recipe Tags <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><?= $this->Html->link('Add a tag', ['controller' => 'Tags', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?></li>
-          <li><?= $this->Html->link('Edit tags', ['controller' => 'Tags', 'action' => 'edit'], ['class' => 'nav-item nav-link active']) ?></li>
-<!--          <li class="divider"></li>-->
-        </ul>
-      </li>
+        <li><?= $this->Html->link('Add Recipe', ['controller' => 'Recipes', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recipe Tags <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><?= $this->Html->link('Add a tag', ['controller' => 'Tags', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?></li>
+                <li><?= $this->Html->link('Edit tags', ['controller' => 'Tags', 'action' => 'edit'], ['class' => 'nav-item nav-link active']) ?></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bookmarks<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><?= $this->Html->iconButtonLink('google', 'http://www.google.com', 'google', ['isFa' => true, 'class' => 'nav-item nav-link active', 'target' => '_blank']) ?></li>
+                <li class="divider"></li>
+                <?php foreach($this->Misc->bookmarks() as $bookmark): ?>
+                    <li><?= $this->Html->iconButtonLink($bookmark->name, $bookmark->url, 'globe', ['isFa' => true, 'class' => 'mav-item nav-link active', 'target' => '_blank'])?></li>
+                <?php endforeach; ?>
+                <li><?= $this->Html->iconButtonLink('Edit bookmarks', ['controller' => 'Bookmarks', 'action' => 'edit'], 'edit', ['class' => 'nav-item nav-link active']) ?></li>
+            </ul>
+        </li>
     </ul>
       <!-- in Chrome this does not display as a navbar-right -->
     <ul class="nav navbar-nav navbar-right">

@@ -37,6 +37,7 @@ li #header-link {
 /* recipes/index */
 .recipe-actions {
     border-bottom: 1px solid darkgray;
+    border-radius: 5px;
     text-align: right;
     padding-top: 0px;
     padding-right: 3px;
