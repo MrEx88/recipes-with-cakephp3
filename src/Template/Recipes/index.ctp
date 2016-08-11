@@ -12,16 +12,16 @@
         </div>
         <div class="recipe-image">
             <?php if($recipe->image !== ""): ?>
-                        <?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id], 'class' => 'recipe-image']) ?>
+                    <?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id], 'class' => 'recipe-image']) ?>
             <?php else: ?>
-                    <?= $this->Html->link($recipe->name, ['controller' => 'Recipes', 'action' => 'view', $recipe->id]) ?>
+                    <?= $this->Html->link($recipe->name, ['controller' => 'Recipes', 'action' => 'view', $recipe->id], ['class' => 'recipe-name-button']) ?>
             <?php endif; ?>
         </div>
         <div class="recipe-tags">
         <?php if(count($recipe->tags) <= 3): ?>
             Tags:
             <?php $i = 1; foreach($recipe->tags as $tag) {
-                    echo $this->Html->link($tag->name, ['controller' => 'Recipes', 'action' => 'search', $tag->name]);
+                    echo $this->Html->link($tag->name, ['controller' => 'Recipes', 'action' => 'search', $tag->name], ['class' => 'recipe-tag']);
                     if($i != count($recipe->tags))
                     {
                         echo ", ";
@@ -29,7 +29,7 @@
                     }
                 }?>
         <?php else: ?>
-            <?= $this->Form->input('Recipe.tags', ['type' => 'select', 'options' => $this->Misc->getNames($recipe->tags), 'label' => 'Tags:', 'style' => 'height: 22px; padding: 0px']) ?>
+            <?= $this->Form->input('Recipe.tags', ['type' => 'select', 'options' => $this->Misc->getNames($recipe->tags), 'label' => 'Tags:', 'class' => 'tags-dropdown']) ?>
         <?php endif; ?>
         </div>
     </div> <!-- end recipe-col -->
@@ -37,11 +37,11 @@
     
     <div class="paginator col-xs-12">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('First')) ?>
+            <?= $this->Paginator->first(('First')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('Last') . ' >>') ?>
+            <?= $this->Paginator->last(__('Last')) ?>
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}. Showing {{current}} records out of {{count}}.')]) ?></p>
     </div>

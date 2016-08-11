@@ -107,10 +107,10 @@ class RecipesTable extends Table
         return $this->find()
             ->distinct(['Recipes.id'])
             ->matching('Tags', function($q) use ($options) {
-              if(empty($options['tags']))
-              {
+                if(empty($options['tags']))
+                {
                   return $q->where(['Tags.name IN' => null]);
-              }
+                }
                 return $q->where(['Tags.name IN' => $options['tags']]);
             });
     }

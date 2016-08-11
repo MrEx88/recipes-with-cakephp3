@@ -8,6 +8,10 @@ a:hover {
     color: #a6a6a6;
 }
 
+a.cakephp-link {
+    border-bottom: 1px dotted black;
+}
+
 body {
     background-color: #e6e6e6;
 }
@@ -72,4 +76,8 @@ div.message.warning:before {
 
 div.message.hidden {
     height: 0;
+}
+
+footer {
+    text-align: center;
 }
