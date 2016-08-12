@@ -10,7 +10,8 @@ The framework source code can be found here: [cakephp/cakephp](https://github.co
 
 ## Features
 
-- You can drag an image from another page into the input box shown below and it will save the file to disk and name it after the recipe.
+- You can drag an image from another page into the input box shown below and it will save the file to disk and name it after the recipe:
+
 ![alt tag](https://github.com/MrEx88/recipes-with-cakephp3/blob/gh-pages/images/my-recipes-drag-img.jpg)
 
 - You can view a pdf on a recipe.
