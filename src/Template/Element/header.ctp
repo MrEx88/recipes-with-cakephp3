@@ -30,6 +30,7 @@
                 <?php foreach($this->Misc->bookmarks() as $bookmark): ?>
                     <li><?= $this->Html->iconButtonLink($bookmark->name, $bookmark->url, 'globe', ['isFa' => true, 'class' => 'mav-item nav-link active', 'target' => '_blank'])?></li>
                 <?php endforeach; ?>
+                <li class="divider"></li>
                 <li><?= $this->Html->iconButtonLink('Edit bookmarks', ['controller' => 'Bookmarks', 'action' => 'edit'], 'edit', ['class' => 'nav-item nav-link active']) ?></li>
             </ul>
         </li>
