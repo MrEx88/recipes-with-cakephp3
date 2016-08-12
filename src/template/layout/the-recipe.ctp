@@ -47,8 +47,49 @@ $appName = 'My Recipes';
         <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
-        
-		<h1><span data-bind="text:Recipe.recipeName, valueUdate:['onload', 'afterkeydown']"></span></h1>
+<!-- recipes/view/*
+        <div class="recipes view columns content">
+            <h3><?= h($recipe->name) ?></h3>
+            <div class="row">
+                <div class="col-md-6">
+                <h4><?= __('Ingredients') ?></h4>
+                <?= $this->Text->autoParagraph($recipe->ingredients_list) ?>
+                </div>
+                <div class="col-md-6">
+                <?php if($recipe->image !== ""): ?>
+                    <?= $this->Html->image($recipe->image) ?>
+                <?php endif; ?>
+                </div>
+            </div>
+            <h4><?= __('Instructions') ?></h4>
+            <?= $this->Text->autoParagraph(h($recipe->instructions)); ?>
+            <br />
+            <?php if (count($recipe->tags) > 0): ?>
+            <pre><h5>Tags: <?php foreach($recipe->tags as $tag) {
+                    echo $this->Html->link($tag->name, ['action' => 'search', $tag->name]);
+                    echo '&nbsp;';
+            }?></h5></pre>
+            <?php endif; ?>
+        </div>
+-->
+<!-- TODO: switch to this after getting knockout js to work here
+        <div class="recipes view columns content">
+		<h3><span data-bind="text:Recipe.recipeName, valueUdate:['onload', 'afterkeydown']"></span></h3>
+        <div class="row">
+            <div class="col-md-6">
+                <h4 data-bind="visible:Recipe.HasIngredients">Ingredients</h4>
+                <pre data-bind="visible:Recipe.HasIngredients"><span data-bind="text:Recipe.ingredients, valueUdate:['onload', 'afterkeydown']"></span></pre>
+            </div>
+            <div class="col-md-6">
+                <img width="200px" height="200px" data-bind="attr:{src:Recipe.image}, visible:Recipe.HasImage" />
+            </div>
+        </div>
+        <h4 data-bind="visible:Recipe.HasInstructions">Instructions</h4>
+        <pre><span data-bind="text:Recipe.instructions, valueUdate:['onload', 'afterkeydown']"></span></pre>
+        </div>
+-->
+<!--        <h5 data-bind="visible:Recipe.HasTags">Tags<span data-bind="text:Recipe.tags"></span></h5>-->
+        <h3><span data-bind="text:Recipe.recipeName, valueUdate:['onload', 'afterkeydown']"></span></h3>
 		<img width="200px" height="200px" data-bind="attr:{src:Recipe.image}, visible:Recipe.HasImage" />
 		<h4 data-bind="visible:Recipe.HasIngredients">Ingredients</h4>
 		<pre data-bind="visible:Recipe.HasIngredients"><span data-bind="text:Recipe.ingredients, valueUdate:['onload', 'afterkeydown']"></span></pre>
@@ -60,14 +101,16 @@ $appName = 'My Recipes';
     <p>&copy;&nbsp;<?=date('Y')?> My Recipes site, Powered by CakePHP <?= $this->Misc->getCakeVersion() ?></p>
 </footer>
 
-<script>			
+<script>
+    /* This does not work in recipes/edit/* for some reason */
 	function Recipe() {
 		var self = this;
 		self.recipeName = ko.observable(<?= $recipe->name !== null ? (string)$recipe->name : "\"\"" ?>);
 		self.ingredients = ko.observable(<?= $recipe->ingredients !== null ? (string)$recipe->ingredients : "\"\"" ?>);
 		self.instructions = ko.observable(<?= $recipe->instructions !== null ? (string)$recipe->instructions : "\"\"" ?>);
 		self.image = ko.observable(<?= $recipe->image !== null ? (string)$recipe->image : "\"\"" ?>);
-
+//        self.tags = ko.observableArray(<$recipe->tags !== null ? $recipe->tags : [] ?>);
+        
 		self.HasIngredients = ko.computed(function() {
 			return self.ingredients() !== "";
 		});
@@ -84,6 +127,10 @@ $appName = 'My Recipes';
         self.HasPreview = ko.computed(function() {
             return self.recipeName() !== "" || self.HasIngredients || self.HasInstructions || self.HasImage;
         });
+        
+//        self.HasTags = ko.computed(function() {
+//           return self.tags().length > 0; 
+//        });
 	}
 	
 	function RecipeViewModel() {

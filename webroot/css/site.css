@@ -16,6 +16,10 @@ body {
     background-color: #e6e6e6;
 }
 
+footer {
+    text-align: center;
+}
+
 /**
  * Flash messages
  */

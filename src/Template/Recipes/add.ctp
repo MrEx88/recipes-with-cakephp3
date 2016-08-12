@@ -12,7 +12,7 @@
             <div class="col-md-4">
                 <h6>Recipe Tags</h6>
                 <p class='p-note'>(hold CTRL to select more than one tag)</p>
-                <?= $this->Form->input('tags._ids', ['options' => $tags, 'label' => false]) ?>
+                <?= $this->Form->input('tags._ids', ['options' => $tags, 'label' => false/*, 'data-bind' => 'value:Recipe.tags'*/]) ?>
             </div>
         </div>
     </fieldset>
