@@ -32,7 +32,7 @@
                     <li><?= $this->Html->iconButtonLink($bookmark->name, $bookmark->url, 'globe', ['class' => 'mav-item nav-link active', 'target' => '_blank'])?></li>
                 <?php endforeach; ?>
                 <li class="divider"></li>
-                <li><?= $this->Html->iconButtonLink('Edit bookmarks', ['controller' => 'Bookmarks', 'action' => 'edit'], 'edit', ['class' => 'nav-item nav-link active']) ?></li>
+                <li><?= $this->Html->link('Edit bookmarks', ['controller' => 'Bookmarks', 'action' => 'edit'], ['class' => 'nav-item nav-link active']) ?></li>
             </ul>
         </li>
     </ul>
