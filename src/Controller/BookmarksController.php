@@ -11,72 +11,52 @@ use App\Controller\AppController;
 class BookmarksController extends AppController
 {
     /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $bookmark = $this->Bookmarks->newEntity();
-        if ($this->request->is('post')) {
-            $bookmark = $this->Bookmarks->patchEntity($bookmark, $this->request->data);
-            if ($this->Bookmarks->save($bookmark)) {
-                $this->Flash->success(__('The bookmark has been saved.'));
-                return $this->redirect(['controller' => 'Recipes', 'action' => 'index']);
-            } else {
-                $this->Flash->error(__('The bookmark could not be saved. Please, try again.'));
-            }
-        }
-        $this->set(compact('bookmark'));
-        $this->set('_serialize', ['bookmark']);
-    }
-
-    /**
      * Edit method
      *
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Network\Response|void Redirects on successful add, edit or delete, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit()
     {
+        $bookmark = $this->Bookmarks->newEntity();
         $bookmarks = $this->Bookmarks->find('all');
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $bookmarksData = [];
-            foreach($this->request->data as $key => $value)
+            // Are we adding a bookmark?
+            if($this->request->data['add'] == '1')
             {
-                $bookmarksData[] = ['id' => $key, 'name' => $value];
-            }
-            $updatedBookmarks = $this->Bookmarks->patchEntities($bookmarks->toArray(), $bookmarksData);
-            foreach($updatedBookmarks as $updatedBookmark)
-            {
-                if(!$updatedBookmarks->save($updatedBookmark))
-                {
-                    $this->Flash->error(__('The bookmarks could not be updated. Please try again.'));
+                $bookmark = $this->Bookmarks->patchEntity($bookmark, $this->request->data);
+                if ($this->Bookmarks->save($bookmark)) {
+                    $this->Flash->success(__('The bookmark has been saved.'));
+                    return $this->redirect(['controller' => 'Bookmarks', 'action' => 'edit']);
+                } else {
+                    $this->Flash->error(__('The bookmark could not be saved. Please, try again.'));
                 }
             }
-            $this->Flash->success(__('The bookmarks have been updated.'));
-            return $this->redirect(['controller' => 'Recipes', 'action' => 'index']);
+            // No, we are updating bookmarks.
+            else
+            {
+                $updatedBookmarks = $this->Bookmarks->patchEntities($bookmarks->toArray(), $this->request->data['bookmark']);
+                if($this->Bookmarks->saveMany($updatedBookmarks))
+                {
+                    foreach($updatedBookmarks as $updatedBookmark)
+                    {
+                        // Delete any bookmarks marked for deletion.
+                        if($updatedBookmark['delete'] == '1')
+                        {
+                            if(!$this->Bookmarks->delete($updatedBookmark))
+                            {
+                                $this->Flash->error(__('Successfully updated bookmarks, but had trouble deleting selected bookmarks. Please, try again.'));
+                                return $this->redirect(['controller' => 'Bookmarks', 'action' => 'edit']);
+                            }
+                        }
+                    }
+                    $this->Flash->success(__('The bookmarks have been updated.'));
+                    return $this->redirect(['controller' => 'Recipes', 'action' => 'index']);
+                }
+                $this->Flash->error(__('The bookmarks could not be updated. Please try again.'));
+            }
         }
-        $this->set(compact('bookmarks'));
-        $this->set('_serialize', ['bookmarks']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Bookmark id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $bookmark = $this->Bookmarks->get($id);
-        if ($this->Bookmarks->delete($bookmark)) {
-            $this->Flash->success(__('The bookmark has been deleted.'));
-        } else {
-            $this->Flash->error(__('The bookmark could not be deleted. Please, try again.'));
-        }
-        return $this->redirect(['controller' => 'Recipes', 'action' => 'index']);
+        $this->set(compact('bookmark', 'bookmarks'));
+        $this->set('_serialize', ['bookmark', 'bookmarks']);
     }
 }

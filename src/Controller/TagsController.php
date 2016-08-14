@@ -40,6 +40,7 @@ class TagsController extends AppController
      */
     public function edit()
     {
+        // TODO: Match bookmarks controller for this controller.
         $this->Flash->warning(__('Changing the name of tags will affect recipes that are using that tag.'));
         
         $tags = $this->Tags->find('all');
