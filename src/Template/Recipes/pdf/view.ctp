@@ -10,7 +10,7 @@
             <?= $this->Text->autoParagraph($recipe->ingredients_list) ?>
         </div>
         <div class="col-xs-6">
-        <?php if($recipe->image !== ""): ?>
+        <?php if ($recipe->image !== ""): ?>
             <img src="<?= WWW_ROOT ?>img/<?= $recipe->image ?>" />
         <?php endif; ?>
         </div>

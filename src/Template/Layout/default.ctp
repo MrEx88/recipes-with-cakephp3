@@ -32,8 +32,8 @@ $appName = 'My Recipes';
     <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('site.css') ?>
     <?= $this->Html->css('recipes.css') ?>
-    
     <!-- TODO: transfer default styles(base & cake) to recipes.css and site.css -->
+    
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>

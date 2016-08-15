@@ -22,7 +22,7 @@ class BookmarksController extends AppController
         $bookmarks = $this->Bookmarks->find('all');
         if ($this->request->is(['patch', 'post', 'put'])) {
             // Are we adding a bookmark?
-            if($this->request->data['add'] == '1')
+            if ($this->request->data['add'] == '1')
             {
                 $bookmark = $this->Bookmarks->patchEntity($bookmark, $this->request->data);
                 if ($this->Bookmarks->save($bookmark)) {
@@ -36,12 +36,12 @@ class BookmarksController extends AppController
             else
             {
                 $updatedBookmarks = $this->Bookmarks->patchEntities($bookmarks->toArray(), $this->request->data['bookmark']);
-                if($this->Bookmarks->saveMany($updatedBookmarks))
+                if ($this->Bookmarks->saveMany($updatedBookmarks))
                 {
-                    foreach($updatedBookmarks as $updatedBookmark)
+                    foreach ($updatedBookmarks as $updatedBookmark)
                     {
                         // Delete any bookmarks marked for deletion.
-                        if($updatedBookmark['delete'] == '1')
+                        if ($updatedBookmark['delete'] == '1')
                         {
                             if(!$this->Bookmarks->delete($updatedBookmark))
                             {
@@ -53,7 +53,7 @@ class BookmarksController extends AppController
                     $this->Flash->success(__('The bookmarks have been updated.'));
                     return $this->redirect(['controller' => 'Recipes', 'action' => 'index']);
                 }
-                $this->Flash->error(__('The bookmarks could not be updated. Please try again.'));
+                $this->Flash->error(__('The bookmarks could not be updated. Please, try again.'));
             }
         }
         $this->set(compact('bookmark', 'bookmarks'));

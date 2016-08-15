@@ -24,7 +24,7 @@
                 <div class="name"><?= h($recipe->name) ?></div>
             </div>
             <div class="recipe-image">
-                <?php if($recipe->image !== ""): ?>
+                <?php if ($recipe->image !== ""): ?>
                             <?= $this->Html->image($recipe->image, ['alt' => $recipe->name, 'url' => ['controller' => 'Recipes', 'action' => 'view', $recipe->id], 'class' => 'recipe-image']) ?>
                 <?php else: ?>
                         <?= $this->Html->link($recipe->name, ['controller' => 'Recipes', 'action' => 'view', $recipe->id]) ?>
@@ -33,7 +33,7 @@
             <div class="recipe-tags">
             <?php if(count($recipe->tags) <= 3): ?>
                 Tags:
-                <?php $i = 1; foreach($recipe->tags as $tag) {
+                <?php $i = 1; foreach ($recipe->tags as $tag) {
                         echo $this->Html->link($tag->name, ['controller' => 'Recipes', 'action' => 'search', $tag->name]);
                         if($i != count($recipe->tags))
                         {

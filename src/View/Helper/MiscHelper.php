@@ -39,7 +39,7 @@ class MiscHelper extends Helper
     public function getNames($assocData)
     {        
         $results =[];
-        foreach($assocData as $assocRecord)
+        foreach ($assocData as $assocRecord)
         {
             $results[] = $assocRecord->name;
         }
@@ -55,7 +55,7 @@ class MiscHelper extends Helper
     public function toList(array $array)
     {
         $arrayList = [];
-        foreach($array as $value)
+        foreach ($array as $value)
         {
             $arrayList[] = Inflector::humanize($value);
         }

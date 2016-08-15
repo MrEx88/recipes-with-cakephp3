@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\ORM\TableRegistry;
 
 /**
  * Tags Controller
@@ -12,27 +11,6 @@ use Cake\ORM\TableRegistry;
 class TagsController extends AppController
 {
     /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $tag = $this->Tags->newEntity();
-        if ($this->request->is('post')) {
-            $tag = $this->Tags->patchEntity($tag, $this->request->data);
-            if ($this->Tags->save($tag)) {
-                $this->Flash->success(__('The tag has been saved.'));
-                return $this->redirect(['controller' => 'recipes', 'action' => 'index']);
-            } else {
-                $this->Flash->error(__('The tag could not be saved. Please, try again.'));
-            }
-        }
-        $this->set(compact('tag'));
-        $this->set('_serialize', ['tag']);
-    }
-
-    /**
      * Edit method. Editing all tags at once.
      *
      * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
@@ -41,46 +19,48 @@ class TagsController extends AppController
     public function edit()
     {
         // TODO: Match bookmarks controller for this controller.
-        $this->Flash->warning(__('Changing the name of tags will affect recipes that are using that tag.'));
-        
+        //$this->Flash->warning(__('Changing the name of tags will affect recipes that are using that tag.'));
+        $tag = $this->Tags->newEntity();
         $tags = $this->Tags->find('all');
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $tagData = [];
-            foreach($this->request->data as $key => $value)
+            // Are we adding a tag?
+            if ($this->request->data['add'] == '1')
             {
-                $tagData[] = ['id' => $key, 'name' => $value];
-            }
-            $updatedTags = $this->Tags->patchEntities($tags->toArray(), $tagData);
-            foreach($updatedTags as $tag)
-            {
-                if (!$tags->save($tag)) {
-                    $this->Flash->error(__('The tags could not be updated. Please try again.'));
-                    return;
+                $tag = $this->Tags->patchEntity($tag, $this->request->data);
+                if ($this->Tags->save($tag))
+                {
+                    $this->Flash->success(__('The tag has been saved.'));
+                    return $this->redirect(['controller' => 'Tags', 'action' => 'edit']);
+                } else {
+                    $this->Flash->error(__('The tag could not be saved, Please, try again.'));
                 }
             }
-            $this->Flash->success(__('The tags has been updated.'));
-            return $this->redirect(['controller' => 'recipes', 'action' => 'index']);
+            // No, we are updating tags.
+            else
+            {
+                debug($this->request->data['tag']);
+                $updatedTags = $this->Tags->patchEntities($tags->toArray(), $this->request->data['tag']);
+                if ($this->Tags->saveMany($updatedTags))
+                {
+                    foreach ($updatedTags as $updatedTag)
+                    {
+                        // Delete any tags marked for deletion.
+                        if ($updatedTag['delete'] == '1')
+                        {
+                            if (!$this->Tags->delete($updatedTag))
+                            {
+                                $this->Flash->error(__('Successfully update tags, but had trouble deleting seleted bookmarks. Please, try again.'));
+                                return $this->redirect(['controller' => 'Tags', 'action' => 'edit']);
+                            }
+                        }
+                    }
+                    $this->Flash->success(__('The tags have been updated.'));
+                    return $this->redirect(['controller' => 'Recipes', 'action' => 'index']);
+                }
+                $this->Flash->error(__('The tags could not be updated. Please, try again.'));
+            }
         }
-        $this->set(compact('tags'));
-        $this->set('_serialize', ['tags']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Tag id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $tag = $this->Tags->get($id);
-        if ($this->Tags->delete($tag)) {
-            $this->Flash->success(__('The tag has been deleted.'));
-        } else {
-            $this->Flash->error(__('The tag could not be deleted. Please, try again.'));
-        }
-        return $this->redirect(['action' => 'index']);
+        $this->set(compact('tag', 'tags'));
+        $this->set('_serialize', ['tag', 'tags']);
     }
 }

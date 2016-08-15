@@ -44,7 +44,7 @@ class RecipesController extends AppController
             'contain' => ['Tags']
         ]);
         
-        if($this->request->params['_ext'] === 'pdf')
+        if ($this->request->params['_ext'] === 'pdf')
         {
             $this->viewBuilder()->options([
                 'pdfConfig' => [
@@ -143,12 +143,12 @@ class RecipesController extends AppController
      */
     public function search()
     {
-        if(isset($this->request->query['q']) && $this->request->query['q'] != '')
+        if (isset($this->request->query['q']) && $this->request->query['q'] != '')
         {
             $words = $this->_toArray($this->request->query['q']);
             $recipes = $this->Recipes->find('search', ['words' => $words]);
         }
-        elseif(count($this->request->params['pass']) > 0)
+        elseif (count($this->request->params['pass']) > 0)
         {
             $tags = $this->request->params['pass'];
         
@@ -176,7 +176,7 @@ class RecipesController extends AppController
         $filePath = WWW_ROOT . 'img' . DS;
         $fileName = Text::slug(strtolower($recipe->name)) . '.jpg';
         
-        if(preg_match("/(https?:\/\/)/", $image))
+        if (preg_match("/(https?:\/\/)/", $image))
         {
             // Decode url.
             $image = urldecode($image);
@@ -196,13 +196,13 @@ class RecipesController extends AppController
             // Save file.
             file_put_contents($filePath . $fileName, file_get_contents($image));
         }
-        else if(preg_match("/[\w\d\-\_]*(\.jpg|\.png)/", $image))
+        else if (preg_match("/[\w\d\-\_]*(\.jpg|\.png)/", $image))
         {
             // It is a image name already.
             $fileName = $image;
 
             // Is image being renamed?
-            if($recipe->getOriginal('image') != '' && file_exists($filePath . $recipe->getOriginal('image')))
+            if ($recipe->getOriginal('image') != '' && file_exists($filePath . $recipe->getOriginal('image')))
             {
                 rename($filePath . $recipe->getOriginal('image'), $filePath .  $fileName);
             }
@@ -221,9 +221,9 @@ class RecipesController extends AppController
     {
         $array = [];
         $temp = "";
-        for($i = 0; $i < strlen($str); $i++)
+        for ($i = 0; $i < strlen($str); $i++)
         {
-            if($str[$i] == ' ')
+            if ($str[$i] == ' ')
             {
                 $array[] = $temp;
                 $temp = "";

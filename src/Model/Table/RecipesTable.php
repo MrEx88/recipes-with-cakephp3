@@ -107,7 +107,7 @@ class RecipesTable extends Table
         return $this->find()
             ->distinct(['Recipes.id'])
             ->matching('Tags', function($q) use ($options) {
-                if(empty($options['tags']))
+                if (empty($options['tags']))
                 {
                   return $q->where(['Tags.name IN' => null]);
                 }
@@ -128,7 +128,7 @@ class RecipesTable extends Table
                ->contain('Tags')
                ->where(['Recipes.name LIKE' => '%' . $options['words'][0] . '%']);
         
-        for($i = 1; $i < count($options['words']); $i++)
+        for ($i = 1; $i < count($options['words']); $i++)
         {
             $recipes->orWhere(['Recipes.name LIKE' => '%' . $options['words'][$i] . '%']);
         }

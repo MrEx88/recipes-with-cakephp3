@@ -15,7 +15,7 @@
     <?= $this->Text->autoParagraph(h($recipe->instructions)); ?>
     <br />
     <?php if (count($recipe->tags) > 0): ?>
-    <pre><h5>Tags: <?php foreach($recipe->tags as $tag) {
+    <pre><h5>Tags: <?php foreach ($recipe->tags as $tag) {
             echo $this->Html->link($tag->name, ['action' => 'search', $tag->name]);
             echo '&nbsp;';
     }?></h5></pre>

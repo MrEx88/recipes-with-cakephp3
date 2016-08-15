@@ -16,35 +16,35 @@
     <br />
     <hr />
     <fieldset>
-    <legend><?= __('Edit Bookmarks') ?></legend>
-    <?php
-        echo $this->Form->create('bookmark');
-        echo $this->Form->hidden('add', ['value' => false]);
-    ?>
-    <table class="table table-striped">
-        <thead>
-            <th></th>
-            <th>Delete</th>
-        </thead>
-        <tbody>
-            <?php $i = 0; foreach($bookmarks as $bookmark): ?>
-                <tr>
-                    <td style="width=90%;">
-                        <?php
-                            echo $this->Form->hidden('bookmark.'.$i.'.id', ['value' => $bookmark->id]);
-                            echo $this->Form->input('bookmark.'.$i.'.name', ['value' => $bookmark->name]);
-                            echo $this->Form->input('bookmark.'.$i.'.url', ['value' => $bookmark->url, 'label' => 'URL']); 
-                        ?>
-                    </td>
-                    <td style="width=*;">
-                        <?= $this->Form->checkbox('bookmark.'.$i.'.delete', ['value' => true, 'checked' => false]) ?>
-                    </td>
-                </tr>
-            <?php $i++; ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <?= $this->Form->button(__('Update')) ?>
-    <?= $this->Form->end() ?>
-        </fieldset>
+        <legend><?= __('Edit Bookmarks') ?></legend>
+        <?php
+            echo $this->Form->create('bookmark');
+            echo $this->Form->hidden('add', ['value' => false]);
+        ?>
+        <table class="table table-striped">
+            <thead>
+                <th></th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <?php $i = 0; foreach ($bookmarks as $bookmark): ?>
+                    <tr>
+                        <td style="width=90%;">
+                            <?php
+                                echo $this->Form->hidden('bookmark.'.$i.'.id', ['value' => $bookmark->id]);
+                                echo $this->Form->input('bookmark.'.$i.'.name', ['value' => $bookmark->name]);
+                                echo $this->Form->input('bookmark.'.$i.'.url', ['value' => $bookmark->url, 'label' => 'URL']); 
+                            ?>
+                        </td>
+                        <td style="width=*;">
+                            <?= $this->Form->checkbox('bookmark.'.$i.'.delete', ['value' => true, 'checked' => false]) ?>
+                        </td>
+                    </tr>
+                <?php $i++; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?= $this->Form->button(__('Update')) ?>
+        <?= $this->Form->end() ?>
+    </fieldset>
 </div>
