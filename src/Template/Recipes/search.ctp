@@ -7,7 +7,7 @@
                 <h3><?= $this->Misc->toList($tags) . __(' Recipes') ?></h3>
             </div>
             <div class="col-md-3">
-                Sort:
+                <h5>Sort:</h5>
                 <button><?= $this->Paginator->sort('created', 'Date') ?></button>
                 <button><?= $this->Paginator->sort('name') ?></button>
             </div>
