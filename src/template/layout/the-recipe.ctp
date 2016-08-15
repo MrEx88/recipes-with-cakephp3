@@ -98,7 +98,7 @@ $appName = 'My Recipes';
 	</div>
 </body>
 <footer>
-    <p>&copy;&nbsp;<?=date('Y')?> My Recipes site, Powered by CakePHP <?= $this->Misc->getCakeVersion() ?></p>
+    <p>&copy;&nbsp;<?=date('Y') . ' My Recipes '. __('site, Powered by ') . $this->Html->link('CakePHP', 'http://http://book.cakephp.org/3.0/en/index.html', ['class' => 'cakephp-link', 'target' => '_blank']) . ' ' .  $this->Misc->cakeVersion() ?></p>
 </footer>
 
 <script>

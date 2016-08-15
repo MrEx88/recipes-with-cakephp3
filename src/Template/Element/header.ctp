@@ -15,13 +15,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
         <li><?= $this->Html->link('Add Recipe', ['controller' => 'Recipes', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?></li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recipe Tags <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><?= $this->Html->link('Add a tag', ['controller' => 'Tags', 'action' => 'add'], ['class' => 'nav-item nav-link active']) ?></li>
-                <li><?= $this->Html->link('Edit tags', ['controller' => 'Tags', 'action' => 'edit'], ['class' => 'nav-item nav-link active']) ?></li>
-            </ul>
-        </li>
+        <li><?= $this->Html->link('Edit Recipe Tags', ['controller' => 'Tags', 'action' => 'edit'], ['class' => 'nav-item nav-link active']) ?></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bookmarks<b class="caret"></b></a>
             <ul class="dropdown-menu">

@@ -25,7 +25,7 @@ class MiscHelper extends Helper
      *
      * @return string of CakePHP version.
      */
-    public function getCakeVersion()
+    public function cakeVersion()
     {
         return Configure::version();
     }

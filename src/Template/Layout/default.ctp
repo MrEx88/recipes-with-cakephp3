@@ -33,7 +33,7 @@ $appName = 'My Recipes';
     <?= $this->Html->css('site.css') ?>
     <?= $this->Html->css('recipes.css') ?>
     <!-- TODO: transfer default styles(base & cake) to recipes.css and site.css -->
-    
+
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -51,6 +51,6 @@ $appName = 'My Recipes';
     </div>
 </body>
 <footer>
-    <p>&copy;&nbsp;<?=date('Y') . ' My Recipes site, Powered by ' . $this->Html->link('CakePHP', 'http://http://book.cakephp.org/3.0/en/index.html', ['class' => 'cakephp-link', 'target' => '_blank']) . ' ' .  $this->Misc->getCakeVersion() ?></p>
+    <p>&copy;&nbsp;<?=date('Y') . ' My Recipes '. __('site, Powered by ') . $this->Html->link('CakePHP', 'http://http://book.cakephp.org/3.0/en/index.html', ['class' => 'cakephp-link', 'target' => '_blank']) . ' ' .  $this->Misc->cakeVersion() ?></p>
 </footer>
 </html>
