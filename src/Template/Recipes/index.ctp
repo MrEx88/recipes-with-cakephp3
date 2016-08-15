@@ -1,5 +1,15 @@
 <div class="recipes index content">
-    <h3><?= __('Recipes') ?></h3>
+    <div class="row">
+        <div class="col-md-9">
+            <h3><?= __('Recipes') ?></h3>
+        </div>
+        <div class="col-md-3">
+            Sort:
+            <button><?= $this->Paginator->sort('created', 'Date') ?></button>
+            <button><?= $this->Paginator->sort('name') ?></button>
+        </div>
+    </div>
+    <br />
     <?php foreach ($recipes as $recipe): ?>
     <div class="recipe-col col-lg-2 col-md-3 col-sm-4 col-xs-6">
         <div class="recipe-actions">
