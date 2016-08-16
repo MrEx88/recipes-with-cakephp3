@@ -16,6 +16,27 @@ body {
     background-color: #e6e6e6;
 }
 
+.content h3 {
+    color: #595959;
+    padding-bottom: 0.5rem;
+    margin-bottom: 20px;
+}
+
+.content h4 {
+    color: darkgray;
+    padding-bottom: 0.5rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid darkgray;
+}
+
+.content .related h4 {
+    color: #4d8f97;
+    padding-bottom: 0.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 0px;
+}
+
 footer {
     text-align: center;
 }
@@ -80,8 +101,4 @@ div.message.warning:before {
 
 div.message.hidden {
     height: 0;
-}
-
-footer {
-    text-align: center;
 }

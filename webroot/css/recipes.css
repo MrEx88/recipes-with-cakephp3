@@ -126,6 +126,14 @@ a.recipe-tag {
     margin-bottom: 3px;
 }
 
+/* /recipes/view/* */
+.recipe-title {
+    border: 2px solid darkgray;
+    border-radius: 5px;
+    padding-top: 7px;
+    padding-left: 10px;
+}
+
 /**
  * PDF
  */
