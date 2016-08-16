@@ -4,9 +4,11 @@
             <h3><?= __('Recipes') ?></h3>
         </div>
         <div class="col-md-3">
-            <h5>Sort:</h5>
-            <button><?= $this->Paginator->sort('created', 'Date') ?></button>
-            <button><?= $this->Paginator->sort('name') ?></button>
+            <ul class="pagination">
+                <li><h5><?= __('Sort:') ?></h5></li>
+                <?= $this->Paginator->sort('created', 'Date') ?>
+                <?= $this->Paginator->sort('name') ?>
+            </ul>
         </div>
     </div>
     <br />
