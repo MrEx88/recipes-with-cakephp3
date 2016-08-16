@@ -47,7 +47,7 @@
     
     <div class="paginator col-xs-12">
         <ul class="pagination">
-            <?= $this->Paginator->first(('First')) ?>
+            <?= $this->Paginator->first(__('First')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>
