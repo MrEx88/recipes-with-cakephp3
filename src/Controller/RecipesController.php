@@ -172,6 +172,7 @@ class RecipesController extends AppController
      */
     private function _getImageNameAndSave(Recipe $recipe)
     {
+        // TODO: Simplify.
         $image = $recipe->image;
         $filePath = WWW_ROOT . 'img' . DS;
         $fileName = Text::slug(strtolower($recipe->name)) . '.jpg';
@@ -182,7 +183,7 @@ class RecipesController extends AppController
             $image = urldecode($image);
             
             // If image is from google.
-            if(preg_match("/(https:\/\/www.google.com\/imgres\?imgurl)/", $image))
+            if (preg_match("/(https:\/\/www.google.com\/imgres\?imgurl)/", $image))
             {
                 // TODO: Maybe combine these two statements below.
                 // Remove google section.
@@ -206,6 +207,10 @@ class RecipesController extends AppController
             {
                 rename($filePath . $recipe->getOriginal('image'), $filePath .  $fileName);
             }
+        }
+        else if ($image == '')
+        {
+            $fileName = '';
         }
         
         return $fileName;
