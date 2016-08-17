@@ -58,7 +58,7 @@ $appName = 'My Recipes';
         
 http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
                 -->
-                <pre data-bind="text:Recipe.ingredients"><?= h($recipe->ingredients) ?></pre>
+                <pre data-bind="visible:Recipe.HasIngredients, text:Recipe.ingredients"><?= h($recipe->ingredients) ?></pre>
                 </div>
                 <div class="col-xs-6">
                     <img width="200px" height="200px" data-bind="attr:{src:Recipe.image}, visible:Recipe.HasImage" />
@@ -67,7 +67,7 @@ http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
             <div class="row">
                 <div class="col-xs-12">
                     <h4 data-bind="visible:Recipe.HasInstructions"><?= __('Instructions') ?></h4>
-                    <pre data-bind="text:Recipe.instructions"><?= h($recipe->instructions) ?></pre>
+                    <pre data-bind="visible:Recipe.HasInstructions, text:Recipe.instructions"><?= h($recipe->instructions) ?></pre>
                 </div>
             </div>
             <br />
