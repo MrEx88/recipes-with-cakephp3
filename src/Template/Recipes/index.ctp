@@ -6,8 +6,8 @@
         <div class="col-md-3">
             <ul class="pagination">
                 <li><h5><?= __('Sort:') ?></h5></li>
-                <?= $this->Paginator->sort('created', 'Date') ?>
-                <?= $this->Paginator->sort('name') ?>
+                <li><?= $this->Paginator->sort('created', 'Date') ?></li>
+                <li><?= $this->Paginator->sort('name') ?></li>
             </ul>
         </div>
     </div>
