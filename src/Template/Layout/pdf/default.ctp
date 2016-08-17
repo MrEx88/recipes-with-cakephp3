@@ -39,9 +39,4 @@ $appName = 'My Recipes';
         
     </div>
 </body>
-<!-- TODO: find out if you can make footer stay on bottom of pdf
-<footer>
-    <p>&copy;&nbsp;<?=date('Y')?> My Recipes site, Powered by CakePHP <?= $this->Misc->getCakeVersion() ?></p>
-</footer>
--->
 </html>

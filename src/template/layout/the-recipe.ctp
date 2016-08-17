@@ -81,7 +81,7 @@ http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
 	</div>
 </body>
 <footer>
-    <p>&copy;&nbsp;<?=date('Y') . ' My Recipes '. __('site, Powered by ') . $this->Html->link('CakePHP', 'http://http://book.cakephp.org/3.0/en/index.html', ['class' => 'cakephp-link', 'target' => '_blank']) . ' ' .  $this->Misc->cakeVersion() ?></p>
+    <p>&copy;&nbsp;<?=date('Y') . ' My Recipes '. __('site. Powered by ') . $this->Html->link('CakePHP', 'http://http://book.cakephp.org/3.0/en/index.html', ['class' => 'cakephp-link', 'target' => '_blank']) . ' ' .  $this->Misc->cakeVersion() ?></p>
 </footer>
     
 <script>

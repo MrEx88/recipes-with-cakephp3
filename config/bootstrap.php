@@ -197,12 +197,16 @@ Plugin::load('CakePdf', ['bootstrap' => true, 'routes' => true]);
 Configure::write('CakePdf', [
     'engine' => [
         'className' => 'CakePdf.WkHtmlToPdf',
-        'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
+        'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+        'options' => [
+            'footer-left' => 'Copyright ' . date('Y') . __(' My Recipes site. Powered by CakePHP ') . Configure::version(),
+            'footer-right' => 'Page [page] of [toPage]'
+        ],
     ],
     'margin' => [
         'top' => 35,
         'left' => 15,
-        'bottom' => 25,
+        'bottom' => 10,
         'right' => 15
     ],
     'download' => false,
