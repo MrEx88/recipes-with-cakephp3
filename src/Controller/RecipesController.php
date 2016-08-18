@@ -172,34 +172,52 @@ class RecipesController extends AppController
      */
     private function _getImageNameAndSave(Recipe $recipe)
     {
-        // TODO: Simplify.
         $image = $recipe->image;
         $filePath = WWW_ROOT . 'img' . DS;
         $fileName = Text::slug(strtolower($recipe->name)) . '.jpg';
         
-        if (preg_match("/(https?:\/\/)/", $image))
+        if ($image == '')
         {
-            // Decode url.
+            $fileName = '';
+        }
+        else if (preg_match("/(https?:\/\/)/", $image))
+        {
             $image = urldecode($image);
             
             // If image is from google.
             if (preg_match("/(https:\/\/www.google.com\/imgres\?imgurl)/", $image))
             {
-                // TODO: Maybe combine these two statements below.
-                // Remove google section.
-                $specialCharUrl = preg_replace("(https:\/\/www.google.com\/imgres\?imgurl=)", "", $image);
-                // Remove google imgrefurl section.
-                $image = preg_replace("(&imgrefurl=[\w\d:\/\.\&\=\-\?\#]*)", "", $specialCharUrl);
+                // Remove google front section.
+                $googleUrl = preg_replace("(https:\/\/www.google.com\/imgres\?imgurl=)", "", $image);
+                // Remove google tail section.
+                $image = preg_replace("(&imgrefurl=[\w\d:\/\.\&\=\-\?\#]*)", "", $googleUrl);
             }
-
-            // TODO: Add regex for other search engines. Bing doesn't seem possible
-
-            // Save file.
-            file_put_contents($filePath . $fileName, file_get_contents($image));
+            // If image is from yahoo.
+            elseif (preg_match("/(https:\/\/images.search.yahoo.com\/images\/view;)/", $image))
+            {
+                // Remove yahoo front section.
+                $yahooUrl = preg_replace("(https:\/\/images.search.yahoo.com\/images\/view;[\_\w\=\d\;\-\?\.\&\:\/\(\)\#\$\+]*&imgurl=)", "", $image);
+                //Remove yahoo tail section.
+                $image = preg_replace("(&[\_\w\=\d\;\-\?\.\&\:\/\(\)\#\$\s]*)", "", $yahooUrl);
+                // Prepend http://.
+                $image = 'http://' . $image;
+            }
+            
+            // TODO: add final check logic here to make sure url has correct address
+            if(true)
+            {
+                // Save file. This still does not ensure the image will not be corrupted.
+                file_put_contents($filePath . $fileName, file_get_contents($image));
+            }
+            else
+            {
+                // Error getting image from url.
+                $fileName = '';
+            }
         }
+        // Is it an image name already? 
         else if (preg_match("/[\w\d\-\_]*(\.jpg|\.png)/", $image))
         {
-            // It is a image name already.
             $fileName = $image;
 
             // Is image being renamed?
@@ -207,10 +225,6 @@ class RecipesController extends AppController
             {
                 rename($filePath . $recipe->getOriginal('image'), $filePath .  $fileName);
             }
-        }
-        else if ($image == '')
-        {
-            $fileName = '';
         }
         
         return $fileName;
