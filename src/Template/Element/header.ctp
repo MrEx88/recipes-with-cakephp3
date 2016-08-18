@@ -1,5 +1,5 @@
 <div class="header">
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
     <!-- Branding -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -35,7 +35,7 @@
             <div class="input-group">
                 <?= $this->Form->input('q', ['label' => false, 'placeholder' => 'Recipe Search', 'id' => 'search_keywords', 'class' => 'form-control']) ?>
                 <div class="input-group-btn">
-                    <?= $this->Form->button("<span class='glyphicon glyphicon-search'></span>", ['class' => 'btn btn-default', 'type' => 'submit']) ?>
+                    <?= $this->Form->button("<span class='glyphicon glyphicon-search'></span>", ['class' => 'btn btn-default search-btn', 'type' => 'submit']) ?>
                 </div>
             </div>
         <?= $this->Form->end() ?>

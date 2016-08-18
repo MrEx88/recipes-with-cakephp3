@@ -30,6 +30,10 @@ body {
     padding-bottom: 99999px;
 }
 
+.content {
+    margin-top: 100px;
+}
+
 .content h3 {
     color: #595959;
     padding-bottom: 0.5rem;
@@ -219,6 +223,10 @@ li #header-link {
 
 .input-group {
     margin-top: 5px;
+}
+
+.search-btn {
+    height: 37px;
 }
 
 

@@ -1,13 +1,14 @@
 <div class="recipes index content">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
             <h3><?= __('Recipes') ?></h3>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <ul class="pagination">
                 <li><h5><?= __('Sort:') ?></h5></li>
-                <li><?= $this->Paginator->sort('created', 'Date') ?></li>
                 <li><?= $this->Paginator->sort('name') ?></li>
+                <li><?= $this->Paginator->sort('created') ?></li>
+                <li><?= $this->Paginator->sort('modified') ?></li>
             </ul>
         </div>
     </div>
