@@ -29,7 +29,7 @@ $appName = 'My Recipes';
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') ?>
     <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+<!--    <?= $this->Html->css('cake.css') ?>-->
     <?= $this->Html->css('site.css') ?>
     <?= $this->Html->css('recipes.css') ?>
     <!-- TODO: transfer default styles(base & cake) to recipes.css and site.css -->

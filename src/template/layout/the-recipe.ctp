@@ -29,7 +29,7 @@ $appName = 'My Recipes';
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') ?>
     <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+<!--    <?= $this->Html->css('cake.css') ?>-->
     <?= $this->Html->css('site.css') ?>
     <?= $this->Html->css('recipes.css') ?>
 
@@ -125,7 +125,7 @@ http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
 		});
         
         self.HasPreview = ko.computed(function() {
-            return self.name() !== "" || self.HasIngredients || self.HasInstructions || self.HasImage;
+            return self.HasName || self.HasIngredients || self.HasInstructions || self.HasImage;
         });
         
         self.HasTags = ko.computed(function() {
