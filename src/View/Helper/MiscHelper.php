@@ -2,6 +2,7 @@
 
 namespace App\View\Helper;
 
+use Cake\Collection\Collection;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\View\Helper;
@@ -35,12 +36,8 @@ class MiscHelper extends Helper
      * @return Array of names from associated table data.
      */
     public function getNames($assocData)
-    {        
-        $results =[];
-        foreach ($assocData as $assocRecord)
-        {
-            $results[] = $assocRecord->name;
-        }
-        return $results;
+    {
+        $collection = new Collection($assocData);
+        return $collection->extract('name')->toArray();
     }
 }

@@ -40,7 +40,7 @@ class RecipesController extends AppController
             $recipes = $this->Recipes->find('tags', ['tags' => $tags])
             ->contain(['Tags']);
             $h3Title = Text::toList($tags) . ' ' . strtolower($h3Title);
-        }        
+        }
         
         $recipes = $this->paginate($recipes);
         $this->set(compact('recipes', 'h3Title'));
@@ -72,7 +72,6 @@ class RecipesController extends AppController
         else
         {
             //$this->viewBuilder()->layout('the-recipe');
-            
         }
         $this->set('recipe', $recipe);
         $this->set('_serialize', ['recipe']);
