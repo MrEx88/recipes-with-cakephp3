@@ -2,7 +2,7 @@
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\Controller\Controller;
+use Cake\Utility\Inflector;
 
 class TableComponent extends Component
 {
@@ -16,10 +16,9 @@ class TableComponent extends Component
      */
     public function updateTable($table, array $data, &$message)
     {
-        $c = new Controller();
         $query = $table->find('all');
         $entities = $table->patchEntities($query->toArray(), $data);
-        $alias = strtolower($table->alias());
+        $alias = Inflector::tableize($table->alias());
         if($table->saveMany($entities))
         {
             // Delete any entity marked for deletion.
