@@ -203,7 +203,7 @@ class RecipesController extends AppController
                 $image = 'http://' . $image;
             }
             
-            // TODO: add final check logic here to make sure url has correct address
+            // TODO:: add final check logic here to make sure url has correct address
             if(true)
             {
                 // Save file. This still does not ensure the image will not be corrupted.

@@ -55,6 +55,8 @@ body {
     border-bottom: 0px;
 }
 
+/* ****** End Body ****** */
+
 
 footer {
     text-align: center;
@@ -135,6 +137,8 @@ select[multiple] {
     color: rgba(0, 0, 0, 0.54);
 }
 
+/* /* ****** End Forms ****** */ */
+
 
 /**
  * Flash messages
@@ -198,6 +202,8 @@ div.message.hidden {
     height: 0;
 }
 
+/* ****** End Flash messages ****** */
+
 
 /**
  * Header
@@ -232,6 +238,8 @@ li #header-link {
 .search-btn {
     height: 37px;
 }
+
+/* ****** End Header ****** */
 
 
 /**
@@ -305,9 +313,22 @@ table tr:nth-of-type(even) {
     background: none;
 }
 
+/* ****** End Pagination ****** */
 
 
-/** Notices and Errors **/
+.row {
+    max-width: 80rem;
+}
+
+
+
+
+
+
+
+/** 
+ * Notices and Errors 
+ */
 .cake-error,
 .cake-debug,
 .notice,

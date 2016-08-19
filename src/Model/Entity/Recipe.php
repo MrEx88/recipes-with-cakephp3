@@ -53,4 +53,14 @@ class Recipe extends Entity
 
         return $list;
     }
+    
+    /**
+     * Gets the ingredients and puts it into an array.
+     *
+     * @return Array of ingredients.
+     */
+    protected function _getIngredientsArray()
+    {
+        return explode("\n", $this->_properties['ingredients']);
+    }
 }

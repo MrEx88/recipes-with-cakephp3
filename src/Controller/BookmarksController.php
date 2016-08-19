@@ -35,25 +35,17 @@ class BookmarksController extends AppController
             // No, we are updating bookmarks.
             else
             {
-                $updatedBookmarks = $this->Bookmarks->patchEntities($bookmarks->toArray(), $this->request->data['bookmark']);
-                if ($this->Bookmarks->saveMany($updatedBookmarks))
+                $this->loadComponent('Table');
+                $message = '';
+                if($this->Table->updateTable($this->Bookmarks, $this->request->data['bookmark'], $message))
                 {
-                    foreach ($updatedBookmarks as $updatedBookmark)
-                    {
-                        // Delete any bookmarks marked for deletion.
-                        if ($updatedBookmark['delete'] == '1')
-                        {
-                            if(!$this->Bookmarks->delete($updatedBookmark))
-                            {
-                                $this->Flash->error(__('Successfully updated bookmarks, but had trouble deleting selected bookmarks. Please, try again.'));
-                                return $this->redirect(['controller' => 'Bookmarks', 'action' => 'edit']);
-                            }
-                        }
-                    }
-                    $this->Flash->success(__('The bookmarks have been updated.'));
+                    $this->Flash->success($message);
                     return $this->redirect(['controller' => 'Recipes', 'action' => 'index']);
                 }
-                $this->Flash->error(__('The bookmarks could not be updated. Please, try again.'));
+                else
+                {   $this->Flash->error($message);
+                    return $this->redirect(['controller' => 'Bookmarks', 'action' => 'edit']);
+                }
             }
         }
         $this->set(compact('bookmark', 'bookmarks'));

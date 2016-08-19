@@ -37,26 +37,17 @@ class TagsController extends AppController
             // No, we are updating tags.
             else
             {
-                debug($this->request->data['tag']);
-                $updatedTags = $this->Tags->patchEntities($tags->toArray(), $this->request->data['tag']);
-                if ($this->Tags->saveMany($updatedTags))
+                $this->loadComponent('Table');
+                $message = '';
+                if($this->Table->updateTable($this->Tags, $this->request->data['tag'], $message))
                 {
-                    foreach ($updatedTags as $updatedTag)
-                    {
-                        // Delete any tags marked for deletion.
-                        if ($updatedTag['delete'] == '1')
-                        {
-                            if (!$this->Tags->delete($updatedTag))
-                            {
-                                $this->Flash->error(__('Successfully update tags, but had trouble deleting seleted bookmarks. Please, try again.'));
-                                return $this->redirect(['controller' => 'Tags', 'action' => 'edit']);
-                            }
-                        }
-                    }
-                    $this->Flash->success(__('The tags have been updated.'));
+                    $this->Flash->success($message);
                     return $this->redirect(['controller' => 'Recipes', 'action' => 'index']);
                 }
-                $this->Flash->error(__('The tags could not be updated. Please, try again.'));
+                else
+                {   $this->Flash->error($message);
+                    return $this->redirect(['controller' => 'Tags', 'action' => 'edit']);
+                }
             }
         }
         $this->set(compact('tag', 'tags'));

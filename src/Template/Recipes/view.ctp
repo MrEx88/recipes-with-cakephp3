@@ -4,7 +4,12 @@
     <div class="row">
         <div class="col-xs-6">
         <h4><?= __('Ingredients') ?></h4>
-        <?= $this->Text->autoParagraph($recipe->ingredients_list) ?>
+<!--        <?= $this->Text->autoParagraph($recipe->ingredients_list) ?>-->
+        <ul>
+        <?php foreach($recipe->ingredients_array as $list): ?>
+            <li><?= $list ?></li>
+        <?php endforeach; ?>
+        </ul>
         </div>
         <div class="col-xs-6">
         <?php if($recipe->image !== ""): ?>

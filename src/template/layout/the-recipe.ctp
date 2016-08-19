@@ -53,7 +53,7 @@ $appName = 'My Recipes';
             <div class="row">
                 <div class="col-xs-6">
                 <h4 data-bind="visible:Recipe.HasIngredients"><?= __('Ingredients') ?></h4>
-                <!-- $this->Text->autoParagraph() doesn't support html attributes,
+                <!-- TODO:: $this->Text->autoParagraph() doesn't support html attributes,
                         so no data-bind. Maybe implement my own version:
         
 http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
@@ -120,7 +120,7 @@ http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
 		});
 
 		self.HasImage = ko.computed(function() {
-			// TODO: Check for a valid url
+			// TODO:: Check for a valid url
 			return self.image() !== "";
 		});
         
