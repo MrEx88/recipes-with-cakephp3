@@ -6,6 +6,14 @@ use Cake\Controller\Controller;
 
 class TableComponent extends Component
 {
+    /**
+     * Updates all records in a table and deletes selected records as well.
+     * 
+     * @param $table The table instance.
+     * @param array $data The request data.
+     * @param &$message Message going to be used for Flash.
+     * @return True If successfully updated.
+     */
     public function updateTable($table, array $data, &$message)
     {
         $c = new Controller();
@@ -27,8 +35,7 @@ class TableComponent extends Component
                 }
             }
             $message = __('The {0} have been updated.', $alias);
-            //return true;
-            return $athis->redirect(['controller' => 'Recipes', 'action' => 'index']);
+            return true;
         }
         $message = __('The {0} could not be updated. Please, try again.', $alias);
         return false;
