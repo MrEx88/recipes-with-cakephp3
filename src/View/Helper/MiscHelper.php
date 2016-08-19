@@ -4,8 +4,6 @@ namespace App\View\Helper;
 
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
-use Cake\Utility\Inflector;
-use Cake\Utility\Text;
 use Cake\View\Helper;
 
 class MiscHelper extends Helper
@@ -44,21 +42,5 @@ class MiscHelper extends Helper
             $results[] = $assocRecord->name;
         }
         return $results;
-    }
-    
-    /**
-     * Turns an array into a list that has been humanized.
-     *
-     * @param $array Array to be altered.
-     * @return The list that has been humanized.
-     */
-    public function toList(array $array)
-    {
-        $arrayList = [];
-        foreach ($array as $value)
-        {
-            $arrayList[] = Inflector::humanize($value);
-        }
-        return Text::toList($arrayList);
     }
 }

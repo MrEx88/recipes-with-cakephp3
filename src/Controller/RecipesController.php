@@ -26,8 +26,24 @@ class RecipesController extends AppController
     {
         $recipes = $this->Recipes->find('all')
             ->contain(['Tags']);
+        $h3Title = 'Recipes';
+        // Is this a search from the navbar?
+        if (isset($this->request->query['q']) && $this->request->query['q'] != '')
+        {
+            $words = $this->_toArray($this->request->query['q']);
+            $recipes = $this->Recipes->find('search', ['words' => $words]);
+        }
+        // Or are there parameters passed?
+        elseif (count($this->request->params['pass']) > 0)
+        {
+            $tags = $this->request->params['pass'];
+            $recipes = $this->Recipes->find('tags', ['tags' => $tags])
+            ->contain(['Tags']);
+            $h3Title = Text::toList($tags) . ' ' . strtolower($h3Title);
+        }        
+        
         $recipes = $this->paginate($recipes);
-        $this->set(compact('recipes'));
+        $this->set(compact('recipes', 'h3Title'));
         $this->set('_serialize', ['recipes']);
     }
 
@@ -134,34 +150,6 @@ class RecipesController extends AppController
             $this->Flash->error(__('The recipe could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
-    }
-    
-    /**
-     * Search method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function search()
-    {
-        if (isset($this->request->query['q']) && $this->request->query['q'] != '')
-        {
-            $words = $this->_toArray($this->request->query['q']);
-            $recipes = $this->Recipes->find('search', ['words' => $words]);
-        }
-        elseif (count($this->request->params['pass']) > 0)
-        {
-            $tags = $this->request->params['pass'];
-        
-            $recipes = $this->Recipes->find('tags', ['tags' => $tags])
-            ->contain(['Tags']);
-        }
-        else
-        {
-            return $this->redirect(['action' => 'index']);
-        }
-        
-        $recipes = $this->paginate($recipes);
-        $this->set(['recipes' => $recipes, 'tags' => $tags]);
     }
     
     /**

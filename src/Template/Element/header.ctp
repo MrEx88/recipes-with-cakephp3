@@ -32,7 +32,7 @@
             </li>
         </ul>
         <div class="col-sm-3 col-md-3 navbar-right">
-            <?= $this->Form->create(null, ['type' => 'GET', 'url' => ['controller' => 'Recipes', 'action' => 'search'], ['class' => 'navbar-form', 'role' => 'search']]) ?>
+            <?= $this->Form->create(null, ['type' => 'GET', 'url' => ['controller' => 'Recipes', 'action' => 'index'], ['class' => 'navbar-form', 'role' => 'search']]) ?>
             <div class="input-group">
                 <?= $this->Form->input('q', ['label' => false, 'placeholder' => 'Recipe Search', 'id' => 'search_keywords', 'class' => 'form-control']) ?>
                 <div class="input-group-btn">
