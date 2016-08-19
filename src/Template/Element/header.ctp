@@ -20,7 +20,6 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bookmarks<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <!-- TODO:: Maybe use actual google icon with color -->
                     <li><?= $this->Html->iconButtonLink('google', 'http://www.google.com', 'google', ['isFa' => true, 'class' => 'nav-item nav-link active', 'target' => '_blank']) ?></li>
                     <li><?= $this->Html->iconButtonLink('yahoo', 'http://www.yahoo.com', 'yahoo', ['isFa' => true, 'class' => 'nav-item nav-link active', 'target' => '_blank']) ?></li>
                     <li class="divider"></li>
