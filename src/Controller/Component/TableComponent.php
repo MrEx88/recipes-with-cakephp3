@@ -28,7 +28,7 @@ class TableComponent extends Component
             {
                 if($entity['delete'] == '1')
                 {
-                    if (!$table->delete($updatedTag))
+                    if (!$table->delete($entity))
                     {
                         $message = __('Successfully update {0}, but had trouble deleting seleted {0}. Please, try again.', $alias);
                         return false;
