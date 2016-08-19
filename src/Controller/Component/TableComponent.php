@@ -3,6 +3,7 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\Utility\Inflector;
+use Cake\ORM\TableRegistry;
 
 class TableComponent extends Component
 {
@@ -16,9 +17,10 @@ class TableComponent extends Component
      */
     public function updateTable($table, array $data, &$message)
     {
+        $b = TableRegistry::get('RecipeTags');
         $query = $table->find('all');
         $entities = $table->patchEntities($query->toArray(), $data);
-        $alias = Inflector::tableize($table->alias());
+        $alias = strtolower(Inflector::humanize(Inflector::underscore($table->alias())));
         if($table->saveMany($entities))
         {
             // Delete any entity marked for deletion.
