@@ -20,7 +20,7 @@
         ?>
         <table class="table table-striped">
         	<thead>
-        		<th></th>
+        		<th>Name</th>
         		<th>Delete</th>
         	</thead>
         	<tbody>

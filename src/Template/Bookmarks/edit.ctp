@@ -23,20 +23,25 @@
         ?>
         <table class="table table-striped">
             <thead>
-                <th></th>
+                <!-- Add pagination?? -->
+                <th>Name</th>
+                <th>URL</th>
                 <th>Delete</th>
             </thead>
             <tbody>
                 <?php $i = 0; foreach ($bookmarks as $bookmark): ?>
                     <tr>
-                        <td style="width=90%;">
+                        <!-- TODO:: Figure out how to change column widths -->
+                        <td>
                             <?php
                                 echo $this->Form->hidden('bookmark.'.$i.'.id', ['value' => $bookmark->id]);
-                                echo $this->Form->input('bookmark.'.$i.'.name', ['value' => $bookmark->name]);
-                                echo $this->Form->input('bookmark.'.$i.'.url', ['value' => $bookmark->url, 'label' => 'URL']); 
+                                echo $this->Form->input('bookmark.'.$i.'.name', ['value' => $bookmark->name, 'label' => false]); 
                             ?>
                         </td>
-                        <td style="width=*;">
+                        <td>
+                            <?= $this->Form->input('bookmark.'.$i.'.url', ['value' => $bookmark->url, 'label' => false]);  ?>
+                        </td>
+                        <td>
                             <?= $this->Form->checkbox('bookmark.'.$i.'.delete', ['value' => true, 'checked' => false]) ?>
                         </td>
                     </tr>
