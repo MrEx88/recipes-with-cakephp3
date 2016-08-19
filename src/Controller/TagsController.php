@@ -18,6 +18,7 @@ class TagsController extends AppController
      */
     public function edit()
     {
+        // TODO:: find out if we can place a custom flash message somewhere else.
         //$this->Flash->warning(__('Changing the name of tags will affect recipes that are using that tag.'));
         $tag = $this->Tags->newEntity();
         $tags = $this->Tags->find('all');
