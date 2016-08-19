@@ -22,6 +22,7 @@
                 <ul class="dropdown-menu">
                     <!-- TODO:: Maybe use actual google icon with color -->
                     <li><?= $this->Html->iconButtonLink('google', 'http://www.google.com', 'google', ['isFa' => true, 'class' => 'nav-item nav-link active', 'target' => '_blank']) ?></li>
+                    <li><?= $this->Html->iconButtonLink('yahoo', 'http://www.yahoo.com', 'yahoo', ['isFa' => true, 'class' => 'nav-item nav-link active', 'target' => '_blank']) ?></li>
                     <li class="divider"></li>
                     <?php foreach($this->Misc->bookmarks() as $bookmark): ?>
                         <li><?= $this->Html->iconButtonLink($bookmark->name, $bookmark->url, 'globe', ['class' => 'mav-item nav-link active', 'target' => '_blank'])?></li>
