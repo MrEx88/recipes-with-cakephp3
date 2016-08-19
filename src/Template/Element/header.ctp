@@ -8,7 +8,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-    <?= $this->Html->link(__('My Recipes'), ['controller' => 'Recipes', 'action' => 'index'], ['class' => 'navbar-brand']) ?>
+        <?=$this->Html->image('my-recipes-logo.png', ['url' => ['controller' => 'Recipes', 'action' => 'index'], 'class' => 'navbar-brand my-recipes-logo']) ?>
+<!--    <?= $this->Html->link(__('My Recipes'), ['controller' => 'Recipes', 'action' => 'index'], ['class' => 'navbar-brand']) ?>-->
     </div>
 
     <!-- Nav links, forms, and other content for toggling -->

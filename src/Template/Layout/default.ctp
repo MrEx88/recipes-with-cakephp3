@@ -24,7 +24,7 @@ $appName = 'My Recipes';
         <?= $appName ?>:
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
+    <?= $this->Html->meta('my-recipes-ico.ico', '/my-recipes-ico.ico', ['type' => 'icon']) ?>
     
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') ?>
