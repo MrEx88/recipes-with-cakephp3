@@ -5,7 +5,7 @@
         </div>
         <div class="col-md-4">
             <ul class="pagination">
-                <li><h5><?= __('Sort:') ?></h5></li>
+                <li><h5><?= __('sort by:') ?></h5></li>
                 <li><?= $this->Paginator->sort('name') ?></li>
                 <li><?= $this->Paginator->sort('created') ?></li>
                 <li><?= $this->Paginator->sort('modified') ?></li>

@@ -13,6 +13,7 @@
     <hr />
     <fieldset>
         <legend><?= __('Edit Tags') ?></legend>
+        <?= $this->Flash->render('tags-warning') ?>
         <?php
         	echo $this->Form->create('tag');
         	echo $this->Form->hidden('add', ['value' => false]);
