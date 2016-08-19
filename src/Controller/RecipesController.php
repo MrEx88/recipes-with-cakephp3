@@ -177,7 +177,7 @@ class RecipesController extends AppController
                 // Remove google front section.
                 $googleUrl = preg_replace("(https:\/\/www.google.com\/imgres\?imgurl=)", "", $image);
                 // Remove google tail section.
-                $image = preg_replace("(&imgrefurl=[\w\d:\/\.\&\=\-\?\#]*)", "", $googleUrl);
+                $image = preg_replace("(&imgrefurl=[\w\d\:\/\.\&\=\-\?\#]*)", "", $googleUrl);
             }
             // If image is from yahoo.
             elseif (preg_match("/(https:\/\/images.search.yahoo.com\/images\/view;)/", $image))
@@ -190,8 +190,8 @@ class RecipesController extends AppController
                 $image = 'http://' . $image;
             }
             
-            // TODO:: add final check logic here to make sure url has correct address
-            if(true)
+            // Final check to make sure we got a good url address.
+            if(preg_match("/(https?:\/\/)[\_\w\=\d\;\-\?\.\&\:\/\(\)\#\$\s]*.(jpg|png|gif)/", strtolower($image)))
             {
                 // Save file. This still does not ensure the image will not be corrupted.
                 file_put_contents($filePath . $fileName, file_get_contents($image));
