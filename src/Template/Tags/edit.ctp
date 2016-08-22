@@ -1,4 +1,4 @@
-<div class="tags form large-9 medium-8 columns content">
+<div class="tags form large-12 medium-12 columns content">
     <?php
     	 echo $this->Form->create($tags);
     	 echo $this->Form->hidden('add', ['value' => true]);
@@ -18,10 +18,10 @@
         	echo $this->Form->create('tag');
         	echo $this->Form->hidden('add', ['value' => false]);
         ?>
-        <table class="table table-striped">
+        <table class="table table-striped edit-tags-table">
         	<thead>
-        		<th>Name</th>
-        		<th>Delete</th>
+        		<th class="tag-name"><?= $this->Paginator->sort('name') ?></th>
+        		<th class="tag-delete">Delete</th>
         	</thead>
         	<tbody>
 		        <?php $i = 0; foreach ($tags as $tag): ?>
