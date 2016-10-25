@@ -18,9 +18,11 @@ class TagsController extends AppController
      */
     public function edit()
     {
-        $this->Flash->warning(__('Changing the name of tags will affect recipes that are using that tag.'), [
-            'key' => 'tags-warning'
-        ]);
+        if ($this->request->is(['get'])) {
+            $this->Flash->warning(__('Changing the name of tags will affect recipes that are using that tag.'), [
+                'key' => 'tags-warning'
+            ]);
+        }
         
         $tag = $this->Tags->newEntity();
         $tags = $this->Tags->find('all');

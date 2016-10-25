@@ -44,8 +44,9 @@ $appName = 'My Recipes';
 <body>
     <?= $this->element('header') ?>
     <div class="container">
-        <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
+       <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> 
         <?= $this->Flash->render() ?>
+        <?php debug($recipe->ingredients) ?>
         <?= $this->fetch('content') ?>
         <div class="recipes view columns content">
             <h3 class="recipe-title" data-bind="visible:Recipe.HasName"><span data-bind="text:Recipe.name"></span></h3>
@@ -55,7 +56,7 @@ $appName = 'My Recipes';
                 <h4 data-bind="visible:Recipe.HasIngredients"><?= __('Ingredients') ?></h4>
                 <!-- TODO:: $this->Text->autoParagraph() doesn't support html attributes,
                         so no data-bind. Maybe implement my own version:
-        
+                
 http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
                 -->
                 <pre data-bind="visible:Recipe.HasIngredients, text:Recipe.ingredients"><?= h($recipe->ingredients) ?></pre>
@@ -88,7 +89,8 @@ http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
 	function Recipe() {
 		var self = this;
 		self.name = ko.observable("<?= $recipe->name ?>");
-		self.ingredients = ko.observable("<?= $recipe->ingredients ?>");
+		self.ingredients = ko.observable(<?php echo "\"" . (string)$recipe->ko_ingredients . "\"" ?>);
+        self.ingredients = ko.observable("test\n1asdf\n1asdf");
 		self.instructions = ko.observable("<?= $recipe->instructions ?>");
 		self.image = ko.observable("<?= $recipe->image ?>");
         self.tags = ko.observableArray([<?php $i = 1; 

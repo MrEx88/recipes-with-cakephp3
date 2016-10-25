@@ -191,7 +191,7 @@ class RecipesController extends AppController
             }
             
             // Final check to make sure we got a good url address.
-            if(preg_match("/(https?:\/\/)[\_\w\=\d\;\-\?\.\&\:\/\(\)\#\$\s]*.(jpg|png|gif)/", strtolower($image)))
+            if(preg_match("/(https?:\/\/)[\w\=\d\;\-\?\.\&\:\_\/\(\)\#\$\s\%]*.(jpg|png|gif)/", strtolower($image)))
             {
                 // Save file. This still does not ensure the image will not be corrupted.
                 file_put_contents($filePath . $fileName, file_get_contents($image));
