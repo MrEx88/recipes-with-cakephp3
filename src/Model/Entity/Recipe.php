@@ -64,6 +64,11 @@ class Recipe extends Entity
         return explode("\n", $this->_properties['ingredients']);
     }
     
+    /**
+     * Gets ingredients and corrects formatting for KnockoutJS.
+     * 
+     * @return Array of formatted ingredients.
+     */
     protected function _getKoIngredients()
     {
         return str_replace("\n", "\\n", $this->_properties['ingredients']);

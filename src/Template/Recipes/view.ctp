@@ -6,8 +6,17 @@
         <h4><?= __('Ingredients') ?></h4>
 <!--        <?= $this->Text->autoParagraph($recipe->ingredients_list) ?>-->
         <ul>
-        <?php foreach($recipe->ingredients_array as $list): ?>
-            <li><?= $list ?></li>
+        <?php foreach($recipe->ingredients_array as $list):
+            if (strlen($list) > 1): 
+                if (!preg_match('/:/', $list)): ?>
+                    <li><?= $list ?></li>
+                <?php else: ?>
+                <!-- no bullet for list item with colon -->
+                    <?= $list ?>
+                <?php endif ?>
+            <?php else: ?>
+                    <br />
+            <?php endif; ?>
         <?php endforeach; ?>
         </ul>
         </div>

@@ -94,7 +94,6 @@ class RecipesController extends AppController
                 $this->Flash->success(__('The recipe has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                debug($recipe);
                 $this->Flash->error(__('The recipe could not be saved. Please, try again.'));
             }
         }

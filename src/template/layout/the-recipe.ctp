@@ -46,7 +46,6 @@ $appName = 'My Recipes';
     <div class="container">
        <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> 
         <?= $this->Flash->render() ?>
-        <?php debug($recipe->ingredients) ?>
         <?= $this->fetch('content') ?>
         <div class="recipes view columns content">
             <h3 class="recipe-title" data-bind="visible:Recipe.HasName"><span data-bind="text:Recipe.name"></span></h3>
@@ -90,7 +89,6 @@ http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
 		var self = this;
 		self.name = ko.observable("<?= $recipe->name ?>");
 		self.ingredients = ko.observable(<?php echo "\"" . (string)$recipe->ko_ingredients . "\"" ?>);
-        self.ingredients = ko.observable("test\n1asdf\n1asdf");
 		self.instructions = ko.observable("<?= $recipe->instructions ?>");
 		self.image = ko.observable("<?= $recipe->image ?>");
         self.tags = ko.observableArray([<?php $i = 1; 
@@ -122,7 +120,6 @@ http://api.cakephp.org/3.2/source-class-Cake.View.Helper.TextHelper.html#259-282
 		});
 
 		self.HasImage = ko.computed(function() {
-			// TODO:: Check for a valid url
 			return self.image() !== "";
 		});
         
