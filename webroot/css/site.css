@@ -12,6 +12,7 @@ a.cakephp-link {
     border-bottom: 1px dotted black;
 }
 
+
 /**
  * Body
  */
@@ -55,12 +56,13 @@ body {
     border-bottom: 0px;
 }
 
-/* ****** End Body ****** */
+/* ****** END Body ****** */
 
 
 footer {
     text-align: center;
 }
+
 
 /**
  * Forms
@@ -137,11 +139,11 @@ select[multiple] {
     color: rgba(0, 0, 0, 0.54);
 }
 
-/* /* ****** End Forms ****** */ */
+/* /* ****** END Forms ****** */ */
 
 
 /**
- * Flash messages
+ * Flash Messages
  */
 div.message {
 	text-align: center;
@@ -202,7 +204,7 @@ div.message.hidden {
     height: 0;
 }
 
-/* ****** End Flash messages ****** */
+/* ****** END Flash Messages ****** */
 
 
 /**
@@ -239,7 +241,7 @@ li #header-link {
     height: 37px;
 }
 
-/* ****** End Header ****** */
+/* ****** END Header ****** */
 
 
 /**
@@ -280,6 +282,8 @@ ul.pagination .disabled:hover a {
     color: rgba(0, 0 ,0 , 0.54);
 }
 
+/* ****** END Pagination ****** */
+
 
 table {
     background: #fff;
@@ -312,8 +316,6 @@ table tr th {
 table tr:nth-of-type(even) {
     background: none;
 }
-
-/* ****** End Pagination ****** */
 
 
 .row {
@@ -383,3 +385,4 @@ pre {
     color:#fff;
     text-decoration: underline;
 }
+/* ****** END Notices and Errors ****** */

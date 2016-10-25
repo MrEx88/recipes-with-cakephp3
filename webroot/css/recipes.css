@@ -1,5 +1,38 @@
+/**
+ * /bookmarks/edit 
+ */
+.edit-bookmarks-table {
+    width: 100%;
+}
 
-/* recipes/index */
+th.bookmark-name {
+    width: 25%;
+}
+
+th.bookmark-url {
+    width: 65%;
+}
+
+th.bookmark-delete {
+    width: 10%;
+}
+/* END /bookmarks/edit */
+
+
+/**
+ * /recipes/add & /recipes/edit 
+ */
+.p-note {
+    font-size: .6em;
+    margin-top: -10px;
+    margin-bottom: 3px;
+}
+/* END /recipes/add & /recipes/edit */
+
+
+/**
+ * /recipes/index
+ */
 .recipe-actions {
     border-bottom: 1px solid darkgray;
     border-radius: 5px;
@@ -83,26 +116,42 @@ a.recipe-tag {
     padding-bottom: 0px;
     padding-right: 5px;
 }
+/* END /recipes/index */
 
-/* /recipes/add & /recipes/edit */
-.p-note {
-    font-size: .6em;
-    margin-top: -10px;
-    margin-bottom: 3px;
-}
 
-/* /recipes/view/# */
+/**
+ * /recipes/view/#
+ */
 .recipe-title {
     border: 2px solid darkgray;
     border-radius: 5px;
     padding-top: 7px;
     padding-left: 10px;
 }
+/* END /recipes/view/# */
 
 /**
- * PDF
+ * /recipes/view/#.pdf
  */
 .recipe-title-pdf {
     border: 1px solid darkgray;
     border-radius: 5px;
 }
+/* /recipes/view/#.pdf */
+
+
+/**
+ * /tags/edit
+ */
+.edit-tags-table {
+    width: 100%;
+}
+
+th.tag-name {
+    width: 90%;
+}
+
+th.tag-delete {
+    width: 10%;
+}
+/* END /tags/edit */

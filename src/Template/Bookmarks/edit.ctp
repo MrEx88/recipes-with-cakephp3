@@ -1,4 +1,4 @@
-<div class="bookmarks form large-9 medium-8 columns content">
+<div class="bookmarks form large-12 medium-12 columns content">
     <?php 
         echo $this->Form->create($bookmark);
         echo $this->Form->hidden('add', ['value' => true]); 
@@ -21,17 +21,15 @@
             echo $this->Form->create('bookmark');
             echo $this->Form->hidden('add', ['value' => false]);
         ?>
-        <table class="table table-striped">
+        <table class="table table-striped edit-bookmarks-table">
             <thead>
-                <!-- Add pagination?? -->
-                <th>Name</th>
-                <th>URL</th>
-                <th>Delete</th>
+                <th class="bookmark-name"><?= $this->Paginator->sort('name') ?></th>
+                <th class="bookmark-url"><?= $this->Paginator->sort('url', 'URL') ?></th>
+                <th class="bookmark-delete">Delete</th>
             </thead>
             <tbody>
                 <?php $i = 0; foreach ($bookmarks as $bookmark): ?>
                     <tr>
-                        <!-- TODO:: Figure out how to change column widths -->
                         <td>
                             <?php
                                 echo $this->Form->hidden('bookmark.'.$i.'.id', ['value' => $bookmark->id]);

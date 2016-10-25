@@ -53,6 +53,7 @@ class TagsController extends AppController
                 }
             }
         }
+        $tags = $this->paginate($tags);
         $this->set(compact('tag', 'tags'));
         $this->set('_serialize', ['tag', 'tags']);
     }
