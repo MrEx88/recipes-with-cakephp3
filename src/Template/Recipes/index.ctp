@@ -37,7 +37,7 @@
             <?php if(count($recipe->tags) <= 3): ?>
                 Tags:
                 <?php $i = 1; foreach ($recipe->tags as $tag) {
-                        echo $this->Html->link($tag->name, ['controller' => 'Recipes', 'action' => 'search', $tag->name], ['class' => 'recipe-tag']);
+                        echo $this->Html->link($tag->name, ['controller' => 'Recipes', 'action' => 'index', $tag->name], ['class' => 'recipe-tag']);
                         if($i != count($recipe->tags))
                         {
                             echo ", ";
