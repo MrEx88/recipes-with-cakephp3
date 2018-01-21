@@ -21,7 +21,7 @@
             <div class="recipe-actions">
                 <?= $this->Html->iconLink('', ['controller' => 'Recipes', 'action' => 'view', $recipe->id . '.pdf'], 'file-pdf-o', ['title' => 'view pdf', 'data-toggle' => 'tooltip', 'class' => 'show-tooltip', 'isFa' => true]) ?>
                 <?= $this->Html->iconLink('', ['controller' => 'Recipes', 'action' => 'edit', $recipe->id], 'pencil-square-o', ['title' => 'edit recipe', 'data-toggle' => 'tooltip', 'class' => 'show-tooltip', 'isFa' => true]) ?>
-                <?= $this->Form->iconPostLink(__(''), ['controller' => 'Recipes', 'action' => 'delete', $recipe->id], 'remove', ['confirm' => __('Are you sure yo want to delete # {0}', $recipe->id), 'title' => 'delete recipe', 'data-toggle' => 'tooltip', 'class' => 'show-tooltip']); ?>
+                <?= $this->Form->iconPostLink(__(''), ['controller' => 'Recipes', 'action' => 'delete', $recipe->id], 'remove', ['confirm' => __('Are you sure you want to delete # {0}', $recipe->id), 'title' => 'delete recipe', 'data-toggle' => 'tooltip', 'class' => 'show-tooltip']); ?>
             </div>
             <div class="recipe-name">
                 <div class="name"><?= h($recipe->name) ?></div>
