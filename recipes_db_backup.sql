@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+CREATE DATABASE IF NOT EXISTS `recipes_db`;
+USE `recipes_db`;
 --
 -- Table structure for table `bookmarks`
 --
